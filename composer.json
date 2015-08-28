@@ -1,0 +1,23 @@
+{
+    "name": "olcs/olcs-utils",
+    "description": "OLCS Utils",
+    "require": {
+        "php": ">=5.4",
+        "zendframework/zendframework": "~2.3.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.0.0",
+        "mockery/mockery": "~0.9.3"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "github-oauth": {
+            "github.com": "9d28c36d14775b5d8c4a5ffeee6172eecbd8c9f4"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Dvsa\\Olcs\\Utils\\": "src/"
+        }
+    }
+}
