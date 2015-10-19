@@ -24,6 +24,18 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     private $port;
     private $shouldLogData;
 
+    /**
+     * Any adapter methods that don't exist in the interface will be wrapped
+     *
+     * @param $method
+     * @param $args
+     * @return mixed
+     */
+    public function __call($method, $args)
+    {
+        return call_user_func_array([$this->getAdapter(), $method], $args);
+    }
+
     public function setAdapter(HttpAdapter $adapter)
     {
         $this->adapter = $adapter;
