@@ -22,7 +22,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     private $adapter;
     private $host;
     private $port;
-    private $shouldLogData;
+    private $shouldLogData = true;
 
     /**
      * Any adapter methods that don't exist in the interface will be wrapped
