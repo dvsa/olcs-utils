@@ -126,6 +126,24 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
             ]
         ];
 
+        if ($this->shouldLogData) {
+
+            $body = $responseObject->getBody();
+
+            json_decode($body, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                Logger::warn(
+                    'Failed to decode json response',
+                    [
+                        'data' => [
+                            'error' => json_last_error()
+                        ]
+                    ]
+                );
+            }
+        }
+
         Logger::debug('Client Response', $data);
 
         return $response;
