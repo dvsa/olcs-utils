@@ -115,34 +115,20 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
      */
     public function read()
     {
+        Logger::debug('Client Read Response');
+
         $response = $this->getAdapter()->read();
+
+        Logger::debug('Client Raw Response', ['data' => $this->shouldLogData ? $response : '*** OMITTED ***']);
 
         $responseObject = Response::fromString($response);
 
         $data = [
             'data' => [
-                'headers' => $responseObject->getHeaders(),
+                'headers' => (array)$responseObject->getHeaders(),
                 'body' => $this->shouldLogData ? $responseObject->getBody() : '*** OMITTED ***'
             ]
         ];
-
-        if ($this->shouldLogData) {
-
-            $body = $responseObject->getBody();
-
-            json_decode($body, true);
-
-            if (json_last_error() !== JSON_ERROR_NONE) {
-                Logger::warn(
-                    'Failed to decode json response',
-                    [
-                        'data' => [
-                            'error' => json_last_error()
-                        ]
-                    ]
-                );
-            }
-        }
 
         Logger::debug('Client Response', $data);
 
