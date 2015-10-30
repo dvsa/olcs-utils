@@ -115,13 +115,15 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
      */
     public function read()
     {
-        Logger::debug('Client Read Response');
+        Logger::debug('Client Read Response: Pre Read');
 
         $response = $this->getAdapter()->read();
 
-        Logger::debug('Client Raw Response', ['data' => $this->shouldLogData ? $response : '*** OMITTED ***']);
+        Logger::debug('Client Read Response: Post Read');
 
         $responseObject = Response::fromString($response);
+
+        Logger::debug('Client Read Response: Post From String');
 
         $data = [
             'data' => [
