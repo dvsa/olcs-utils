@@ -104,8 +104,19 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
         ];
 
         Logger::debug('Client Request: ' . $method . ' -> ' . $url, $data);
-
-        return $this->getAdapter()->write($method, $url, $httpVer, $headers, $body);
+        try {
+            return $this->getAdapter()->write($method, $url, $httpVer, $headers, $body);
+        } catch (\Exception $ex) {
+            Logger::err(
+                'Client Request Write Exception',
+                [
+                    'data' => [
+                        'message' => $ex->getMessage(),
+                        'ex' => (array)$ex
+                    ]
+                ]
+            );
+        }
     }
 
     /**
