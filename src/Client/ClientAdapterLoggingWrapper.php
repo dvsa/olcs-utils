@@ -22,7 +22,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     private $adapter;
     private $host;
     private $port;
-    private $shouldLogData;
+    private $shouldLogData = true;
 
     /**
      * Any adapter methods that don't exist in the interface will be wrapped
@@ -125,6 +125,24 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
                 'body' => $this->shouldLogData ? $responseObject->getBody() : '*** OMITTED ***'
             ]
         ];
+
+        if ($this->shouldLogData) {
+
+            $body = $responseObject->getBody();
+
+            json_decode($body, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                Logger::warn(
+                    'Failed to decode json response',
+                    [
+                        'data' => [
+                            'error' => json_last_error()
+                        ]
+                    ]
+                );
+            }
+        }
 
         Logger::debug('Client Response', $data);
 
