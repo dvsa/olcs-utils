@@ -159,4 +159,35 @@ class MissingTranslationProcessorTest extends TestCase
 
         $this->assertEquals('missing.key', $this->sut->processEvent($event));
     }
+
+    public function testProcessEventForPartialWithPlaceholder()
+    {
+        $event = m::mock()
+            ->shouldReceive('getTarget')
+            ->shouldReceive('getParams')
+            ->andReturn(
+                [
+                    'locale' => 'en_GB',
+                    'message' => 'markup-some-partial',
+                ]
+            )
+            ->getMock();
+
+        $placeholder = m::mock();
+        $placeholder->shouldReceive('asString')->once()->andReturn('foo-placeholder');
+
+        $this->getPlaceholder->shouldReceive('__invoke')->once()->with('FOO')->andReturn($placeholder);
+
+        $this->mockResolver->shouldReceive('resolve')
+            ->once()
+            ->with('en_GB/markup-some-partial')
+            ->andReturn('path_to_the_partial');
+
+        $this->mockRenderer->shouldReceive('render')
+            ->once()
+            ->with('en_GB/markup-some-partial')
+            ->andReturn('markup {{PLACEHOLDER:FOO}} bar');
+
+        $this->assertEquals('markup foo-placeholder bar', $this->sut->processEvent($event));
+    }
 }
