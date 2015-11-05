@@ -30,16 +30,21 @@ class MissingTranslationProcessorTest extends TestCase
      */
     protected $sut;
 
+    protected $getPlaceholder;
+
     public function setUp()
     {
         parent::setUp();
 
         $this->mockRenderer = m::mock('Zend\View\Renderer\RendererInterface');
         $this->mockResolver = m::mock('Zend\View\Resolver\ResolverInterface');
+        $this->getPlaceholder = m::mock();
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);
         $sm->setService('Zend\View\Resolver\TemplatePathStack', $this->mockResolver);
+        $sm->setService('ViewHelperManager', $sm);
+        $sm->setService('getPlaceholder', $this->getPlaceholder);
 
         $this->sut = new Sut();
         $this->sut->createService($sm);
