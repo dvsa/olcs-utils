@@ -2,6 +2,7 @@
 
 namespace Dvsa\OlcsTest\Utils\Service\Translator;
 
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
 use Mockery as m;
@@ -38,7 +39,7 @@ class MissingTranslationProcessorTest extends TestCase
 
         $this->mockRenderer = m::mock('Zend\View\Renderer\RendererInterface');
         $this->mockResolver = m::mock('Zend\View\Resolver\ResolverInterface');
-        $this->getPlaceholder = m::mock();
+        $this->getPlaceholder = m::mock(GetPlaceholderFactory::class);
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);

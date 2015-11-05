@@ -15,7 +15,7 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
-use Common\View\Helper\GetPlaceholderFactory;
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 
 /**
  * Missing Translation Processor
@@ -27,12 +27,12 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     use ListenerAggregateTrait;
 
     /**
-     * @var \Zend\View\Renderer\RendererInterface
+     * @var Renderer
      */
     protected $renderer;
 
     /**
-     * @var \Zend\View\Resolver\ResolverInterface
+     * @var Resolver
      */
     protected $resolver;
 
