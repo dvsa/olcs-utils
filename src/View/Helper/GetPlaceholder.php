@@ -37,7 +37,7 @@ class GetPlaceholder
         }
 
         if (is_string($value)) {
-            return (string)$value;
+            return $value;
         }
 
         return null;
