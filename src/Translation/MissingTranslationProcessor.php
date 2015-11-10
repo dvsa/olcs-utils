@@ -15,6 +15,7 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 
 /**
  * Missing Translation Processor
@@ -26,18 +27,28 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     use ListenerAggregateTrait;
 
     /**
-     * @var \Zend\View\Renderer\RendererInterface
+     * @var Renderer
      */
     protected $renderer;
 
     /**
-     * @var \Zend\View\Resolver\ResolverInterface
+     * @var Resolver
      */
     protected $resolver;
+
+    /**
+     * @var GetPlaceholderFactory
+     */
+    protected $placeholder;
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $this->renderer = $serviceLocator->get('ViewRenderer');
+
+        if ($serviceLocator->get('ViewHelperManager')->has('getPlaceholder')) {
+            $this->placeholder = $serviceLocator->get('ViewHelperManager')->get('getPlaceholder');
+        }
+
         $this->resolver = $serviceLocator->get('Zend\View\Resolver\TemplatePathStack');
 
         return $this;
@@ -86,6 +97,29 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
 
             if ($foundPath !== false) {
                 $message = $this->renderer->render($partial);
+            }
+
+            $message = $this->populatePlaceholder($message);
+        }
+
+        return $message;
+    }
+
+    protected function populatePlaceholder($message)
+    {
+        if ($this->placeholder === null) {
+            return $message;
+        }
+
+        if (preg_match_all('/\{\{PLACEHOLDER\:([a-zA-Z\_0-9]+)\}\}/', $message, $matches)) {
+
+            $placeholderHelper = $this->placeholder;
+
+            foreach ($matches[0] as $index => $match) {
+
+                $placeholder = $placeholderHelper($matches[1][$index])->asString();
+
+                $message = str_replace($match, $placeholder, $message);
             }
         }
 
