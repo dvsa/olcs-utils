@@ -52,6 +52,11 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
         $client->setAdapter($this);
     }
 
+    public function getShouldLogData()
+    {
+        return $this->shouldLogData;
+    }
+
     public function setShouldLogData($shouldLogData = true)
     {
         $this->shouldLogData = $shouldLogData;
