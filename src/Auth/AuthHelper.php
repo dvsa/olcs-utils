@@ -35,7 +35,7 @@ class AuthHelper
      */
     public static function getBackendUri()
     {
-        if (empty(self::$config)) {
+        if (empty(self::$config['api-map'][self::getHostname()])) {
             return '';
         }
 
