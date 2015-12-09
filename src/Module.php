@@ -33,6 +33,10 @@ class Module
                     'internal.dev.olcs.mgt.mtpdvsa',
                     'selfserve.dev.olcs.mgt.mtpdvsa',
                     'backend.dev.olcs.mgt.mtpdvsa',
+                    // OpenAM Dev
+                    'internal.openam-dev.olcs.mgt.mtpdvsa',
+                    'selfserve.openam-dev.olcs.mgt.mtpdvsa',
+                    'backend.openam-dev.olcs.mgt.mtpdvsa',
                 ]
             ],
             'non-openam' => [
@@ -118,6 +122,8 @@ class Module
                 // Dev OpenAM
                 'internal.dev.olcs.mgt.mtpdvsa' => 'backend.dev.olcs.mgt.mtpdvsa',
                 'selfserve.dev.olcs.mgt.mtpdvsa' => 'backend.dev.olcs.mgt.mtpdvsa',
+                'internal.openam-dev.olcs.mgt.mtpdvsa' => 'backend.openam-dev.olcs.mgt.mtpdvsa',
+                'selfserve.openam-dev.olcs.mgt.mtpdvsa' => 'backend.openam-dev.olcs.mgt.mtpdvsa',
                 // Test
                 'test-dvsa-internal.web02.olcs.mgt.mtpdvsa' => 'test-dvsa-backend.web02.olcs.mgt.mtpdvsa',
                 'test-dvsa-selfserve.web02.olcs.mgt.mtpdvsa' => 'test-dvsa-backend.web02.olcs.mgt.mtpdvsa',
