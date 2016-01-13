@@ -2,6 +2,7 @@
 
 namespace Dvsa\OlcsTest\Utils\Service\Translator;
 
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
 use Mockery as m;
@@ -30,16 +31,21 @@ class MissingTranslationProcessorTest extends TestCase
      */
     protected $sut;
 
+    protected $getPlaceholder;
+
     public function setUp()
     {
         parent::setUp();
 
         $this->mockRenderer = m::mock('Zend\View\Renderer\RendererInterface');
         $this->mockResolver = m::mock('Zend\View\Resolver\ResolverInterface');
+        $this->getPlaceholder = m::mock(GetPlaceholderFactory::class);
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);
         $sm->setService('Zend\View\Resolver\TemplatePathStack', $this->mockResolver);
+        $sm->setService('ViewHelperManager', $sm);
+        $sm->setService('getPlaceholder', $this->getPlaceholder);
 
         $this->sut = new Sut();
         $this->sut->createService($sm);
@@ -153,5 +159,36 @@ class MissingTranslationProcessorTest extends TestCase
         $this->mockRenderer->shouldReceive('render')->never();
 
         $this->assertEquals('missing.key', $this->sut->processEvent($event));
+    }
+
+    public function testProcessEventForPartialWithPlaceholder()
+    {
+        $event = m::mock()
+            ->shouldReceive('getTarget')
+            ->shouldReceive('getParams')
+            ->andReturn(
+                [
+                    'locale' => 'en_GB',
+                    'message' => 'markup-some-partial',
+                ]
+            )
+            ->getMock();
+
+        $placeholder = m::mock();
+        $placeholder->shouldReceive('asString')->once()->andReturn('foo-placeholder');
+
+        $this->getPlaceholder->shouldReceive('__invoke')->once()->with('FOO')->andReturn($placeholder);
+
+        $this->mockResolver->shouldReceive('resolve')
+            ->once()
+            ->with('en_GB/markup-some-partial')
+            ->andReturn('path_to_the_partial');
+
+        $this->mockRenderer->shouldReceive('render')
+            ->once()
+            ->with('en_GB/markup-some-partial')
+            ->andReturn('markup {{PLACEHOLDER:FOO}} bar');
+
+        $this->assertEquals('markup foo-placeholder bar', $this->sut->processEvent($event));
     }
 }
