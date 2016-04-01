@@ -2,10 +2,17 @@
     "name": "olcs/olcs-utils",
     "description": "OLCS Utils",
     "repositories": [
-      {
-        "type": "vcs",
-        "url": "git@gitlab.inf.mgt.mtpdvsa:olcs/olcs-logging.git"
-      }
+        {
+            "type": "vcs",
+            "url": "git@gitlab.inf.mgt.mtpdvsa:olcs/olcs-logging.git"
+        },
+        {
+            "packagist": false
+        },
+        {
+            "url": "http://satis.inf.mgt.mtpdvsa",
+            "type": "composer"
+        }
     ],
     "require": {
         "php": ">=5.4",
@@ -20,7 +27,8 @@
         "preferred-install": "dist",
         "github-oauth": {
             "github.com": "9d28c36d14775b5d8c4a5ffeee6172eecbd8c9f4"
-        }
+        },
+        "secure-http" : false
     },
     "autoload": {
         "psr-4": {
