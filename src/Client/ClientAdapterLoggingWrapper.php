@@ -83,8 +83,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     {
         $this->host = $host;
         $this->port = $port;
-        Logger::debug('Client Connection: ' . $host . ':' . $port);
-        Logger::debug('Client Connection Adapter: ' . get_class($this->getAdapter()));
+        Logger::debug('Client Connection: ' . $host . ':' . $port .' ('. get_class($this->getAdapter()) .')');
 
         return $this->getAdapter()->connect($host, $port, $secure);
     }
@@ -120,16 +119,8 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
      */
     public function read()
     {
-        Logger::debug('Client Read Response: Pre Read');
-
         $response = $this->getAdapter()->read();
-
-        Logger::debug('Client Read Response: Post Read');
-
         $responseObject = Response::fromString($response);
-
-        Logger::debug('Client Read Response: Post From String');
-
         $data = [
             'data' => [
                 'headers' => (array)$responseObject->getHeaders(),
@@ -137,14 +128,13 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
             ]
         ];
 
-        Logger::debug('Client Response', $data);
+        Logger::logResponse($responseObject->getStatusCode(), 'Client Response', $data);
 
         return $response;
     }
 
     /**
      * Close the connection to the server
-     *
      */
     public function close()
     {
