@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="Bootstrap.php" colors="true">
+    <testsuites>
+        <testsuite name="OLCS Utils">
+            <directory>./</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../src</directory>
+            <exclude>
+                <file>../src/Module.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
