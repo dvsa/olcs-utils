@@ -123,7 +123,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
         $responseObject = Response::fromString($response);
         $data = [
             'data' => [
-                'headers' => (array)$responseObject->getHeaders(),
+                'headers' => $responseObject->getHeaders()->toArray(),
                 'body' => $this->shouldLogData ? $responseObject->getBody() : '*** OMITTED ***'
             ]
         ];
