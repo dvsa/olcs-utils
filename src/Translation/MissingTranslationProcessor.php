@@ -15,7 +15,7 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
-use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
+use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 
 /**
  * Missing Translation Processor
