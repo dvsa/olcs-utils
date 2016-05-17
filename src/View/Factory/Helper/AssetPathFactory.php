@@ -16,7 +16,7 @@ class AssetPathFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $sl)
     {
-        $config = $sl->get('Config');
+        $config = $sl->getServiceLocator()->get('Config');
 
         return new AssetPath($config);
     }
