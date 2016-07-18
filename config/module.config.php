@@ -10,7 +10,8 @@ return [
     ],
     'view_helpers' => [
         'factories' => [
-            'getPlaceholder' => \Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory::class,
+            'getPlaceholder' => \Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory::class,
+            'assetPath' => \Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory::class,
         ]
     ]
 ];

@@ -1,19 +1,13 @@
 <?php
 
-/**
- * Get Placeholder Factory Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-namespace Dvsa\OlcsTest\Utils\View\Helper;
+namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
+use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\Placeholder;
-use Zend\View\Model\ViewModel;
 
 /**
  * Get Placeholder Factory Test
@@ -24,6 +18,7 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
 {
     protected $sut;
 
+    /** @var  m\MockInterface */
     protected $mockPlaceholder;
 
     public function setUp()
@@ -32,6 +27,7 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
 
         $this->mockPlaceholder = m::mock(Placeholder::class);
 
+        /** @var ServiceLocatorInterface|m\MockInterface $sm */
         $sm = m::mock(ServiceLocatorInterface::class);
         $sm->shouldReceive('get')->with('placeholder')->andReturn($this->mockPlaceholder);
 
@@ -40,19 +36,15 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
 
     public function testInvoke()
     {
-        $container = m::mock();
-
         $this->mockPlaceholder->shouldReceive('__invoke')
             ->with('foo')
-            ->andReturn($container);
+            ->andReturn(m::mock());
 
-        /** @var GetPlaceholder $getPlaceholder */
-        $getPlaceholder = $this->sut->__invoke('foo');
+        $invoke = $this->sut;
+        $getPlaceholder = $invoke('foo');
+        static::assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
 
-        $this->assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
-
-        $getPlaceholder2 = $this->sut->__invoke('foo');
-
-        $this->assertSame($getPlaceholder, $getPlaceholder2);
+        $getPlaceholder2 = $invoke('foo');
+        static::assertSame($getPlaceholder, $getPlaceholder2);
     }
 }

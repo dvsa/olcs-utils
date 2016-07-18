@@ -1,12 +1,8 @@
 <?php
 
-/**
- * Get Placeholder
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-namespace Dvsa\Olcs\Utils\View\Helper;
+namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;

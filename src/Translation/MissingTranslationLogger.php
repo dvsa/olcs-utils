@@ -10,7 +10,6 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Renderer\RendererInterface as Renderer;
 use Zend\View\Resolver\ResolverInterface as Resolver;
-use Dvsa\Olcs\Utils\View\Helper\GetPlaceholderFactory;
 
 /**
  * Purpose of this class is to create a file that shows all the translation used on a specific page
