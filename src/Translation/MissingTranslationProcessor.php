@@ -37,6 +37,11 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     protected $resolver;
 
     /**
+     * @var TranslatorLogger
+     */
+    private $translationLogger;
+
+    /**
      * @var GetPlaceholderFactory
      */
     protected $placeholder;
@@ -65,7 +70,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      * @param object $e
      * @return string
      */
-    public function processEvent($e)
+    public function processEvent(\Zend\EventManager\Event $e)
     {
         $translator = $e->getTarget();
         $params = $e->getParams();
@@ -77,7 +82,6 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
             foreach ($matches[0] as $key => $match) {
                 $message = str_replace($match, $translator->translate($matches[1][$key]), $message);
             }
-            return $message;
         }
 
         // handles partials as translations. Note we only try to resolve keys
@@ -102,7 +106,17 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
             $message = $this->populatePlaceholder($message);
         }
 
-        return $message;
+        // if message has changed (ie its been translated) then return it
+        if ($message !== $params['message']) {
+            return $message;
+        }
+
+        if ($this->translationLogger !== null) {
+            // if translationLogger is set then log missing message
+            $this->translationLogger->logTranslations($message, $translator);
+        }
+
+        // needs to return void so that the event is propagated to other listeners
     }
 
     protected function populatePlaceholder($message)
@@ -124,5 +138,17 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         }
 
         return $message;
+    }
+
+    /**
+     * Set the TranslationLogger to log to
+     *
+     * @param TranslatorLogger $translationLogger
+     *
+     * @return void
+     */
+    public function setTranslationLogger(TranslatorLogger $translationLogger)
+    {
+        $this->translationLogger = $translationLogger;
     }
 }
