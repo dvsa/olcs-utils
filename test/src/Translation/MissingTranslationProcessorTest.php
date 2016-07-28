@@ -65,7 +65,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testProcessEventForPartial()
     {
-        $event = m::mock()
+        $event = m::mock(\Zend\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -94,7 +94,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testProcessEventForPartialNi()
     {
-        $event = m::mock()
+        $event = m::mock(\Zend\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -136,7 +136,7 @@ class MissingTranslationProcessorTest extends TestCase
             ->andReturn('translated substring')
             ->getMock();
 
-        $event = m::mock()
+        $event = m::mock(\Zend\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn($translator)
@@ -160,7 +160,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testOtherMissingKeysDontTriggerTemplateResolver()
     {
-        $event = m::mock()
+        $event = m::mock(\Zend\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -172,12 +172,12 @@ class MissingTranslationProcessorTest extends TestCase
         $this->mockResolver->shouldReceive('resolve')->never();
         $this->mockRenderer->shouldReceive('render')->never();
 
-        static::assertEquals('missing.key', $this->sut->processEvent($event));
+        static::assertEquals(null, $this->sut->processEvent($event));
     }
 
     public function testProcessEventForPartialWithPlaceholder()
     {
-        $event = m::mock()
+        $event = m::mock(\Zend\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
