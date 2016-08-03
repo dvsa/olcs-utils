@@ -1,15 +1,12 @@
 <?php
 
-/**
- * Client Adapter Logging Wrapper
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 namespace Dvsa\Olcs\Utils\Client;
 
 use Olcs\Logging\Log\Logger;
 use Zend\Http\Client;
+use Zend\Http\Client\Adapter\AdapterInterface;
 use Zend\Http\Client\Adapter\AdapterInterface as HttpAdapter;
+use Zend\Http\Client\Adapter\StreamInterface;
 use Zend\Http\Response;
 
 /**
@@ -17,9 +14,11 @@ use Zend\Http\Response;
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-class ClientAdapterLoggingWrapper implements HttpAdapter
+class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
 {
+    /** @var  HttpAdapter|StreamInterface */
     private $adapter;
+
     private $host;
     private $port;
     private $shouldLogData = true;
@@ -27,8 +26,9 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     /**
      * Any adapter methods that don't exist in the interface will be wrapped
      *
-     * @param $method
-     * @param $args
+     * @param string $method Call Method
+     * @param array  $args   Method agruments
+     *
      * @return mixed
      */
     public function __call($method, $args)
@@ -36,36 +36,71 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
         return call_user_func_array([$this->getAdapter(), $method], $args);
     }
 
+    /**
+     * Set adapter
+     *
+     * @param HttpAdapter $adapter Adapter
+     *
+     * @return $this
+     */
     public function setAdapter(HttpAdapter $adapter)
     {
         $this->adapter = $adapter;
+        return $this;
     }
 
+    /**
+     * Return native adapter
+     *
+     * @return HttpAdapter|StreamInterface
+     */
     public function getAdapter()
     {
         return $this->adapter;
     }
 
+    /**
+     * Wrap adapter of specified client
+     *
+     * @param Client $client Client
+     *
+     * @return void
+     */
     public function wrapAdapter(Client $client)
     {
         $this->setAdapter($client->getAdapter());
         $client->setAdapter($this);
     }
 
+    /**
+     * Returns is should log data flag
+     *
+     * @return bool
+     */
     public function getShouldLogData()
     {
         return $this->shouldLogData;
     }
 
+    /**
+     * Set, is response should be logged
+     *
+     * @param bool $shouldLogData True for should logged
+     *
+     * @return $this
+     */
     public function setShouldLogData($shouldLogData = true)
     {
         $this->shouldLogData = $shouldLogData;
+        return $this;
     }
 
     /**
      * Set the configuration array for the adapter
      *
-     * @param array $options
+     * @param array $options Adapter options to set
+     *
+     * @return AdapterInterface
      */
     public function setOptions($options = array())
     {
@@ -75,28 +110,31 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
     /**
      * Connect to the remote server
      *
-     * @param string  $host
-     * @param int     $port
-     * @param bool $secure
+     * @param string $host   Host Url
+     * @param int    $port   Port
+     * @param bool   $secure Use Secure connection
+     *
+     * @return void
      */
     public function connect($host, $port = 80, $secure = false)
     {
         $this->host = $host;
         $this->port = $port;
-        Logger::debug('Client Connection: ' . $host . ':' . $port .' ('. get_class($this->getAdapter()) .')');
+        Logger::debug('Client Connection: ' . $host . ':' . $port . ' (' . get_class($this->getAdapter()) . ')');
 
-        return $this->getAdapter()->connect($host, $port, $secure);
+        $this->getAdapter()->connect($host, $port, $secure);
     }
 
     /**
      * Send request to the remote server
      *
-     * @param string        $method
-     * @param \Zend\Uri\Uri $url
-     * @param string        $httpVer
-     * @param array         $headers
-     * @param string        $body
-     * @return string Request as text
+     * @param string        $method  Method
+     * @param \Zend\Uri\Uri $url     Url
+     * @param string        $httpVer Http protocol version
+     * @param array         $headers Http Headers
+     * @param string        $body    Body
+     *
+     * @return string
      */
     public function write($method, $url, $httpVer = '1.1', $headers = array(), $body = '')
     {
@@ -135,6 +173,8 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
 
     /**
      * Close the connection to the server
+     *
+     * @return void
      */
     public function close()
     {
@@ -142,6 +182,19 @@ class ClientAdapterLoggingWrapper implements HttpAdapter
         $this->host = null;
         $this->post = null;
 
-        return $this->getAdapter()->close();
+        $this->getAdapter()->close();
+    }
+
+    /**
+     * Set output stream
+     *
+     * @param resource $stream Stream
+     *
+     * @return $this
+     */
+    public function setOutputStream($stream)
+    {
+        $this->adapter->setOutputStream($stream);
+        return $this;
     }
 }
