@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Client Adapter Logging Wrapper Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
@@ -16,77 +11,65 @@ use Zend\Http\Client\Adapter\AdapterInterface;
 use Zend\Log\Writer\Mock;
 
 /**
- * Client Adapter Logging Wrapper Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
+ * @covers  Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper
  */
 class ClientAdapterLoggingWrapperTest extends MockeryTestCase
 {
-    /**
-     * @var ClientAdapterLoggingWrapper
-     */
+    /** @var ClientAdapterLoggingWrapper */
     private $sut;
+
+    /** @var  m\MockInterface|Client\Adapter\Curl */
+    private $mockAdapter;
 
     public function setUp()
     {
         $writer = new Mock();
 
+        $this->mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
+
         $mockLogger = new \Zend\Log\Logger();
         $mockLogger->addWriter($writer);
 
         $this->sut = new ClientAdapterLoggingWrapper();
+        $this->sut->setAdapter($this->mockAdapter);
+
         Logger::setLogger($mockLogger);
     }
 
     public function testSetAdapter()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-
-        $this->sut->setAdapter($mockAdapter);
-
-        $this->assertSame($mockAdapter, $this->sut->getAdapter());
+        $this->assertSame($this->mockAdapter, $this->sut->getAdapter());
     }
 
     public function testWrapAdapter()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-
         /** @var Client $client */
         $client = m::mock(Client::class)->makePartial();
-        $client->setAdapter($mockAdapter);
+        $client->setAdapter($this->mockAdapter);
 
         $this->sut->wrapAdapter($client);
 
-        $this->assertSame($mockAdapter, $this->sut->getAdapter());
+        $this->assertSame($this->mockAdapter, $this->sut->getAdapter());
         $this->assertSame($this->sut, $client->getAdapter());
     }
 
     public function testSetOptions()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('setOptions')->once()->with(['foo' => 'bar']);
-
-        $this->sut->setAdapter($mockAdapter);
+        $this->mockAdapter->shouldReceive('setOptions')->once()->with(['foo' => 'bar']);
 
         $this->sut->setOptions(['foo' => 'bar']);
     }
 
     public function testConnect()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('connect')->once()->with('foo.com', 80, false);
-
-        $this->sut->setAdapter($mockAdapter);
+        $this->mockAdapter->shouldReceive('connect')->once()->with('foo.com', 80, false);
 
         $this->sut->connect('foo.com', 80);
     }
 
     public function testWrite()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('write')->once()->with('GET', '/foo', '1.1', [], '');
-
-        $this->sut->setAdapter($mockAdapter);
+        $this->mockAdapter->shouldReceive('write')->once()->with('GET', '/foo', '1.1', [], '');
 
         $this->sut->write('GET', '/foo');
     }
@@ -106,32 +89,33 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
             . '\r\n'
             . '{\"foo\":\"bar\"}';
 
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('read')->once()->andReturn($response);
+        $this->mockAdapter->shouldReceive('read')->once()->andReturn($response);
 
         $this->sut->setShouldLogData(false);
-        $this->sut->setAdapter($mockAdapter);
 
         $this->assertEquals($response, $this->sut->read());
     }
 
     public function testClose()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('close')->once();
-
-        $this->sut->setAdapter($mockAdapter);
+        $this->mockAdapter->shouldReceive('close')->once();
 
         $this->sut->close();
     }
 
     public function testCall()
     {
-        $mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
-        $mockAdapter->shouldReceive('getConfig')->once()->andReturn('foo');
-
-        $this->sut->setAdapter($mockAdapter);
+        $this->mockAdapter->shouldReceive('getConfig')->once()->andReturn('foo');
 
         $this->assertEquals('foo', $this->sut->getConfig());
+    }
+
+    public function testSetOutputStream()
+    {
+        $stream = m::mock(\stdClass::class);
+
+        $this->mockAdapter->shouldReceive('setOutputStream')->once()->with($stream);
+
+        $this->assertSame($this->sut, $this->sut->setOutputStream($stream));
     }
 }
