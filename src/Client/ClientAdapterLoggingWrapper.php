@@ -162,7 +162,8 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
         $data = [
             'data' => [
                 'headers' => $responseObject->getHeaders()->toArray(),
-                'body' => $this->shouldLogData ? $responseObject->getBody() : '*** OMITTED ***'
+                'body' => $this->shouldLogData ? $responseObject->getBody() : '*** OMITTED ***',
+                'statusCode' => $responseObject->getStatusCode(),
             ]
         ];
 
