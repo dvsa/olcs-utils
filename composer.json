@@ -21,7 +21,7 @@
     "require-dev": {
         "phpunit/phpunit": "^4.0.0",
         "mockery/mockery": "~0.9.3",
-        "olcs/olcs-logging": "dev-develop"
+        "olcs/olcs-logging": "dev-release/4.0.6"
     },
     "config": {
         "preferred-install": "dist",
