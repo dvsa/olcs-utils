@@ -10,11 +10,12 @@ namespace Dvsa\Olcs\Utils\Translation;
 class TranslatorLogger
 {
     const CACHE_KEY = 'TranslatorLogger_messagesWritten';
+    const CACHE_TTL = 60 * 60 * 24;
 
     /**
-     * @var File
+     * @var \Zend\Log\Logger
      */
-    private $logFilePointer;
+    private $logger;
 
     /**
      * @var array
@@ -26,20 +27,34 @@ class TranslatorLogger
      */
     private $request;
 
+    /**
+     * @var \Zend\Cache\Storage\StorageInterface
+     */
+    private $cache;
 
     /**
      * TranslatorLogger constructor.
      *
-     * @param string                            $logFileName Log file name
-     * @param \Zend\Http\PhpEnvironment\Request $request     Request
+     * @param \Zend\Log\Logger                     $logger  Logger to send message to
+     * @param \Zend\Http\PhpEnvironment\Request    $request Request object
+     * @param \Zend\Cache\Storage\StorageInterface $cache   Cache
      */
-    public function __construct($logFileName, \Zend\Http\PhpEnvironment\Request $request)
-    {
-        $this->logFilePointer = fopen($logFileName, 'a');
+    public function __construct(
+        \Zend\Log\LoggerInterface $logger,
+        \Zend\Http\PhpEnvironment\Request $request,
+        \Zend\Cache\Storage\StorageInterface $cache = null
+    ) {
+        $this->logger = $logger;
         $this->request = $request;
+        $this->messagesWritten = [];
 
-        if (apcu_exists(self::CACHE_KEY)) {
-            $this->messagesWritten = apcu_fetch(self::CACHE_KEY);
+        if ($cache === null) {
+            $cache = new \Zend\Cache\Storage\Adapter\Apc(['ttl' => self::CACHE_TTL]);
+        }
+        $this->cache = $cache;
+
+        if ($this->cache->hasItem(self::CACHE_KEY)) {
+            $this->messagesWritten = $this->cache->getItem(self::CACHE_KEY);
         }
     }
 
@@ -48,21 +63,20 @@ class TranslatorLogger
      */
     public function __destruct()
     {
-        // store cache ttl 3 days
-        apc_store(self::CACHE_KEY, $this->messagesWritten, 60 * 60 * 72);
-        fclose($this->logFilePointer);
+        if ($this->cache) {
+            $this->cache->setItem(self::CACHE_KEY, $this->messagesWritten);
+        }
     }
 
     /**
      * Log translation
      *
-     * @param string $message Message to be translated
-     * @param string $english English version of the translation
-     * @param string $welsh   Welsh version of the translation
+     * @param string                                    $message    Message to be logged
+     * @param \Zend\I18n\Translator\TranslatorInterface $translator Translator
      *
      * @return void
      */
-    public function logTranslations($message, $translator)
+    public function logTranslation($message, \Zend\I18n\Translator\TranslatorInterface $translator)
     {
         if (in_array($message, $this->messagesWritten)) {
             return;
@@ -70,10 +84,13 @@ class TranslatorLogger
 
         $this->messagesWritten[] = $message;
 
-        fputcsv(
-            $this->logFilePointer,
-            // Request URL, message, English
-            [$this->request->getRequestUri(), $message, $translator->translate($message)]
+        $this->logger->info(
+            'Missing translation',
+            [
+                'message' => $message,
+                'en_GB' => $translator->translate($message),
+                'request' => $this->request->getRequestUri(),
+            ]
         );
     }
 }

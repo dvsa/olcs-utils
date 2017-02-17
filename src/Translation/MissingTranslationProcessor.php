@@ -46,6 +46,13 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      */
     protected $placeholder;
 
+    /**
+     * Factory
+     *
+     * @param ServiceLocatorInterface $serviceLocator ServiceLocator
+     *
+     * @return $this
+     */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $this->renderer = $serviceLocator->get('ViewRenderer');
@@ -59,6 +66,13 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         return $this;
     }
 
+    /**
+     * Attach to event manager
+     *
+     * @param EventManagerInterface $events Event manager
+     *
+     * @return void
+     */
     public function attach(EventManagerInterface $events)
     {
         $events->attach(Translator::EVENT_MISSING_TRANSLATION, [$this, 'processEvent']);
@@ -67,7 +81,8 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     /**
      * Process an event
      *
-     * @param object $e
+     * @param \Zend\EventManager\Event $e Event
+     *
      * @return string
      */
     public function processEvent(\Zend\EventManager\Event $e)
@@ -111,14 +126,22 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
             return $message;
         }
 
-        if ($this->translationLogger !== null) {
+        // If logger is setup and not en_GB (ie don't log missing english messages as that is expected)
+        if ($this->translationLogger !== null && $params['locale'] !== 'en_GB') {
             // if translationLogger is set then log missing message
-            $this->translationLogger->logTranslations($message, $translator);
+            $this->translationLogger->logTranslation($message, $translator);
         }
 
         // needs to return void so that the event is propagated to other listeners
     }
 
+    /**
+     * Populate a placeholder
+     *
+     * @param string $message Message
+     *
+     * @return mixed
+     */
     protected function populatePlaceholder($message)
     {
         if ($this->placeholder === null) {
@@ -143,7 +166,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     /**
      * Set the TranslationLogger to log to
      *
-     * @param TranslatorLogger $translationLogger
+     * @param TranslatorLogger $translationLogger Translation logger
      *
      * @return void
      */
