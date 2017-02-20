@@ -208,4 +208,28 @@ class MissingTranslationProcessorTest extends TestCase
 
         static::assertEquals('markup foo-placeholder bar', $this->sut->processEvent($event));
     }
+
+    public function testProcessEventAddMissingLog()
+    {
+        $translator = m::mock(\Zend\I18n\Translator\TranslatorInterface::class);
+        $event = m::mock(\Zend\EventManager\Event::class)
+            ->shouldReceive('getTarget')
+            ->once()
+            ->andReturn($translator)
+            //
+            ->shouldReceive('getParams')
+            ->andReturn(
+                [
+                    'locale' => 'cy_GB',
+                    'message' => 'MESSAGE1',
+                ]
+            )
+            ->getMock();
+
+        $translationLogger = m::mock(\Dvsa\Olcs\Utils\Translation\TranslatorLogger::class);
+        $translationLogger->shouldReceive('logTranslation')->with('MESSAGE1', $translator)->once();
+
+        $this->sut->setTranslationLogger($translationLogger);
+        $this->sut->processEvent($event);
+    }
 }
