@@ -273,17 +273,17 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.9.8",
+            "version": "0.9.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855"
+                "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/mockery-mockery-1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855-zip-0a1467.tar",
-                "reference": "1e5e2ffdc4d71d7358ed58a6fdd30a4a0c506855",
-                "shasum": "f4c06bf333a7865921c07f283e68b2666d3fcfa7"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/mockery-mockery-6fdb61243844dc924071d3404bb23994ea0b6856-zip-fc289d.tar",
+                "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
+                "shasum": "8c767c4f647b3f9a2f306f745dc51aa13ffd4f29"
             },
             "require": {
                 "hamcrest/hamcrest-php": "~1.1",
@@ -334,7 +334,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2017-02-09 13:29:38"
+            "time": "2017-02-28 12:52:32"
         },
         {
             "name": "olcs/olcs-logging",
@@ -342,7 +342,7 @@
             "source": {
                 "type": "git",
                 "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-logging.git",
-                "reference": "e142b85624cbff300a60aa5fa03500e87d1a04dd"
+                "reference": "a656ff7043dec4a1b72452fb8e2b8d56f78af222"
             },
             "require": {
                 "php": ">=5.4",
@@ -368,7 +368,7 @@
                 }
             },
             "description": "Logging Module for Olcs",
-            "time": "2017-02-10 10:42:25"
+            "time": "2017-02-28 16:58:30"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -518,27 +518,27 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.6.2",
+            "version": "v1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "6c52c2722f8460122f96f86346600e1077ce22cb"
+                "reference": "93d39f1f7f9326d746203c7c056f300f7f126073"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpspec-prophecy-6c52c2722f8460122f96f86346600e1077ce22cb-zip-573078.tar",
-                "reference": "6c52c2722f8460122f96f86346600e1077ce22cb",
-                "shasum": "89bcc5bde8b67087b830c9cf74dec0d048fc98e6"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpspec-prophecy-93d39f1f7f9326d746203c7c056f300f7f126073-zip-f944ab.tar",
+                "reference": "93d39f1f7f9326d746203c7c056f300f7f126073",
+                "shasum": "dc024e7e79e156d5e1287ce3cbcc6a83cb648c7d"
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
                 "php": "^5.3|^7.0",
                 "phpdocumentor/reflection-docblock": "^2.0|^3.0.2",
-                "sebastian/comparator": "^1.1",
-                "sebastian/recursion-context": "^1.0|^2.0"
+                "sebastian/comparator": "^1.1|^2.0",
+                "sebastian/recursion-context": "^1.0|^2.0|^3.0"
             },
             "require-dev": {
-                "phpspec/phpspec": "^2.0",
+                "phpspec/phpspec": "^2.5|^3.2",
                 "phpunit/phpunit": "^4.8 || ^5.6.5"
             },
             "type": "library",
@@ -577,7 +577,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2016-11-21 14:58:47"
+            "time": "2017-03-02 20:05:34"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -731,25 +731,30 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "1.0.8",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260"
+                "reference": "3dcf38ca72b158baf0bc245e9184d3fdffa9c46f"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-timer-38e9124049cf1a164f1e4537caf19c99bf1eb260-zip-cb2ac7.tar",
-                "reference": "38e9124049cf1a164f1e4537caf19c99bf1eb260",
-                "shasum": "84e88673c3b00dd98a4fcbd3f2b29263c6289fbd"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-timer-3dcf38ca72b158baf0bc245e9184d3fdffa9c46f-zip-c27592.tar",
+                "reference": "3dcf38ca72b158baf0bc245e9184d3fdffa9c46f",
+                "shasum": "7958c3cf853a06329165b3a846033dd8da861344"
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^5.3.3 || ^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4|~5"
+                "phpunit/phpunit": "^4.8.35 || ^5.7 || ^6.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "classmap": [
                     "src/"
@@ -771,21 +776,21 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2016-05-12 18:03:57"
+            "time": "2017-02-26 11:10:40"
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.9",
+            "version": "1.4.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
+                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-token-stream-3b402f65a4cc90abf6e1104e388b896ce209631b-zip-6915ed.tar",
-                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
-                "shasum": "2c27ee600311a09449ff7da3dd9859b1c8655d13"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-token-stream-e03f8f67534427a787e21a385a67ec3ca6978ea7-zip-3836d6.tar",
+                "reference": "e03f8f67534427a787e21a385a67ec3ca6978ea7",
+                "shasum": "5f9fea9f6d2933598a20affd8475e17c72adbecb"
             },
             "require": {
                 "ext-tokenizer": "*",
@@ -820,7 +825,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2016-11-15 14:06:22"
+            "time": "2017-02-27 10:12:30"
         },
         {
             "name": "phpunit/phpunit",
@@ -1283,17 +1288,17 @@
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "1.0.2",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791"
+                "reference": "b19cc3298482a335a95f3016d2f8a6950f0fbcd7"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-recursion-context-913401df809e99e4f47b27cdd781f4a258d58791-zip-205e4a.tar",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791",
-                "shasum": "19c6a1765e24e05269f3b06a27138a85b26293ee"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-recursion-context-b19cc3298482a335a95f3016d2f8a6950f0fbcd7-zip-811982.tar",
+                "reference": "b19cc3298482a335a95f3016d2f8a6950f0fbcd7",
+                "shasum": "1a9b37f6271a20d8adb8a9317c4a9044d5fe9390"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -1332,7 +1337,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2015-11-11 19:50:13"
+            "time": "2016-10-03 07:41:43"
         },
         {
             "name": "sebastian/version",
@@ -1371,17 +1376,17 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.2.4",
+            "version": "v3.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
+                "reference": "093e416ad096355149e265ea2e4cc1f9ee40ab1a"
             },
             "dist": {
                 "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-yaml-9724c684646fcb5387d579b4bfaa63ee0b0c64c8-zip-142eda.tar",
-                "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
-                "shasum": "9b96d15ec20844105ed05bd3c3097e6c40768d06"
+                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-yaml-093e416ad096355149e265ea2e4cc1f9ee40ab1a-zip-9fb7c5.tar",
+                "reference": "093e416ad096355149e265ea2e4cc1f9ee40ab1a",
+                "shasum": "70f3edbb0fbb6469a6d65638af29fbee2347daec"
             },
             "require": {
                 "php": ">=5.5.9"
@@ -1422,7 +1427,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-16 22:46:52"
+            "time": "2017-03-07 16:47:02"
         },
         {
             "name": "webmozart/assert",
