@@ -126,8 +126,10 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
             return $message;
         }
 
-        // If logger is setup and not en_GB (ie don't log missing english messages as that is expected)
-        if ($this->translationLogger !== null && $params['locale'] !== 'en_GB') {
+        // If logger is setup and not en_GB or en_NI (ie don't log missing english messages as that is expected)
+        if ($this->translationLogger !== null
+            && $params['locale'] !== 'en_GB'
+            && $params['locale'] !== 'en_NI') {
             // if translationLogger is set then log missing message
             $this->translationLogger->logTranslation($message, $translator);
         }

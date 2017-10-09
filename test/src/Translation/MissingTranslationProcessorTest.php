@@ -232,4 +232,28 @@ class MissingTranslationProcessorTest extends TestCase
         $this->sut->setTranslationLogger($translationLogger);
         $this->sut->processEvent($event);
     }
+
+    public function testDontLogMissingTranslationForNi()
+    {
+        $translator = m::mock(\Zend\I18n\Translator\TranslatorInterface::class);
+        $event = m::mock(\Zend\EventManager\Event::class)
+            ->shouldReceive('getTarget')
+            ->once()
+            ->andReturn($translator)
+            //
+            ->shouldReceive('getParams')
+            ->andReturn(
+                [
+                    'locale' => 'en_NI',
+                    'message' => 'MESSAGE1',
+                ]
+            )
+            ->getMock();
+
+        $translationLogger = m::mock(\Dvsa\Olcs\Utils\Translation\TranslatorLogger::class);
+        $translationLogger->shouldNotReceive('logTranslation');
+
+        $this->sut->setTranslationLogger($translationLogger);
+        $this->sut->processEvent($event);
+    }
 }
