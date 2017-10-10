@@ -16,4 +16,5 @@ config/autoload/*.php
 public/static
 *.sw?
 node_modules
-test/review
+test/coverage/
+.scannerwork/
