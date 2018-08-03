@@ -163,11 +163,9 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         }
 
         if (preg_match_all('/\{\{PLACEHOLDER\:([a-zA-Z\_0-9]+)\}\}/', $message, $matches)) {
-
             $placeholderHelper = $this->placeholder;
 
             foreach ($matches[0] as $index => $match) {
-
                 $placeholder = $placeholderHelper($this->container, $matches[1][$index])->asString();
 
                 $message = str_replace($match, $placeholder, $message);
