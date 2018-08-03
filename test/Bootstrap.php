@@ -3,6 +3,7 @@
 namespace Dvsa\OlcsTest\Utils;
 
 use Mockery as m;
+use Zend\ServiceManager\ServiceManager;
 
 error_reporting(-1);
 chdir(dirname(__DIR__));
@@ -46,9 +47,8 @@ class Bootstrap
      */
     public static function getServiceManager()
     {
-        $sm = m::mock('\Zend\ServiceManager\ServiceManager')
-            ->makePartial()
-            ->setAllowOverride(true);
+        $sm = m::mock(ServiceManager::class)
+            ->makePartial();
 
         return $sm;
     }

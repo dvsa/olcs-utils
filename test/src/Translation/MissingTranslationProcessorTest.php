@@ -9,6 +9,7 @@ use Mockery as m;
 use Zend\EventManager\EventManagerInterface;
 use Zend\I18n\Translator\Translator;
 use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
+use Zend\View\Helper\Placeholder;
 
 /**
  * Class MissingTranslationProcessorTest
@@ -191,10 +192,9 @@ class MissingTranslationProcessorTest extends TestCase
             )
             ->getMock();
 
-        $placeholder = m::mock();
+        $placeholder = m::mock(Placeholder::class);
         $placeholder->shouldReceive('asString')->once()->andReturn('foo-placeholder');
-
-        $this->getPlaceholder->shouldReceive('__invoke')->once()->with('FOO')->andReturn($placeholder);
+        $this->getPlaceholder->shouldReceive('__invoke')->once()->andReturn($placeholder);
 
         $this->mockResolver->shouldReceive('resolve')
             ->once()

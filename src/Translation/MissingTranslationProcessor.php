@@ -7,6 +7,7 @@
  */
 namespace Dvsa\Olcs\Utils\Translation;
 
+use Interop\Container\ContainerInterface;
 use Zend\EventManager\EventManagerInterface;
 use Zend\EventManager\ListenerAggregateInterface;
 use Zend\EventManager\ListenerAggregateTrait;
@@ -47,6 +48,11 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     protected $placeholder;
 
     /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
      * Factory
      *
      * @param ServiceLocatorInterface $serviceLocator ServiceLocator
@@ -55,13 +61,19 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $this->renderer = $serviceLocator->get('ViewRenderer');
+        return $this($serviceLocator, self::class);
+    }
 
-        if ($serviceLocator->get('ViewHelperManager')->has('getPlaceholder')) {
-            $this->placeholder = $serviceLocator->get('ViewHelperManager')->get('getPlaceholder');
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        $this->container = $container;
+        $this->renderer = $container->get('ViewRenderer');
+
+        if ($container->get('ViewHelperManager')->has('getPlaceholder')) {
+            $this->placeholder = $container->get('ViewHelperManager')->get('getPlaceholder');
         }
 
-        $this->resolver = $serviceLocator->get('Zend\View\Resolver\TemplatePathStack');
+        $this->resolver = $container->get('Zend\View\Resolver\TemplatePathStack');
 
         return $this;
     }
@@ -73,7 +85,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      *
      * @return void
      */
-    public function attach(EventManagerInterface $events)
+    public function attach(EventManagerInterface $events, $priority = 1)
     {
         $events->attach(Translator::EVENT_MISSING_TRANSLATION, [$this, 'processEvent']);
     }
@@ -156,7 +168,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
 
             foreach ($matches[0] as $index => $match) {
 
-                $placeholder = $placeholderHelper($matches[1][$index])->asString();
+                $placeholder = $placeholderHelper($this->container, $matches[1][$index])->asString();
 
                 $message = str_replace($match, $placeholder, $message);
             }

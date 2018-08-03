@@ -3,6 +3,7 @@
 namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Helper\AbstractHelper;
@@ -25,14 +26,14 @@ class GetPlaceholderFactory extends AbstractHelper implements FactoryInterface
         return $this;
     }
 
-    public function __invoke($name)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $placeholder = $this->placeholder;
 
-        if (!isset($this->containers[$name])) {
-            $this->containers[$name] = new GetPlaceholder($placeholder($name));
+        if (!isset($this->containers[$requestedName])) {
+            $this->containers[$requestedName] = new GetPlaceholder($placeholder($requestedName));
         }
 
-        return $this->containers[$name];
+        return $this->containers[$requestedName];
     }
 }

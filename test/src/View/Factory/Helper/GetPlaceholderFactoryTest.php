@@ -31,20 +31,24 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
         $sm = m::mock(ServiceLocatorInterface::class);
         $sm->shouldReceive('get')->with('placeholder')->andReturn($this->mockPlaceholder);
 
-        $this->sut->createService($sm);
+        $service = $this->sut->createService($sm);
     }
 
     public function testInvoke()
     {
+        $sm = m::mock(ServiceLocatorInterface::class);
+        $this->mockPlaceholder->shouldReceive('__invoke')
+            ->with($sm,'foo')
+            ->andReturn(m::mock());
         $this->mockPlaceholder->shouldReceive('__invoke')
             ->with('foo')
             ->andReturn(m::mock());
 
         $invoke = $this->sut;
-        $getPlaceholder = $invoke('foo');
+        $getPlaceholder = $invoke($sm,'foo');
         static::assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
 
-        $getPlaceholder2 = $invoke('foo');
+        $getPlaceholder2 = $invoke($sm,'foo');
         static::assertSame($getPlaceholder, $getPlaceholder2);
     }
 }

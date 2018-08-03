@@ -21,15 +21,9 @@ class AssetPathFactoryTest extends MockeryTestCase
             ->with('Config')->andReturn(['unit_Config'])
             ->getMock();
 
-        /** @var ServiceManager $mockSm */
-        $mockSm = m::mock(ServiceManager::class)
-            ->shouldReceive('getServiceLocator')
-            ->andReturn($mockSl)
-            ->getMock();
-
         static::assertInstanceOf(
             AssetPath::class,
-            (new AssetPathFactory())->createService($mockSm)
+            (new AssetPathFactory())->createService($mockSl)
         );
     }
 }

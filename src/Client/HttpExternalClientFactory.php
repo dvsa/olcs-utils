@@ -2,6 +2,7 @@
 
 namespace Dvsa\Olcs\Utils\Client;
 
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
@@ -25,11 +26,16 @@ class HttpExternalClientFactory implements FactoryInterface
      *
      * @return \Zend\Http\Client
      */
-    public function createService(ServiceLocatorInterface $sl)
+    public function createService(ServiceLocatorInterface $serviceLocator)
+    {
+        return $this($serviceLocator, self::class);
+    }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $client = new \Zend\Http\Client();
 
-        $config = $sl->get('config');
+        $config = $container->get('config');
         if (!empty($config[self::CONFIG_KEY])) {
             $client->setOptions($config[self::CONFIG_KEY]);
         }

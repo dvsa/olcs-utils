@@ -8,6 +8,7 @@
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
+use Interop\Container\ContainerInterface;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\I18n\Translator\Translator;
@@ -26,7 +27,12 @@ class NiTextTranslation implements FactoryInterface
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $this->translator = $serviceLocator->get('translator');
+        return $this($serviceLocator, self::class);
+    }
+
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    {
+        $this->translator = $container->get('translator');
 
         return $this;
     }
