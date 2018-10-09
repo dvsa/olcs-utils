@@ -25,7 +25,7 @@
     "require-dev": {
         "olcs/olcs-devtools": "dev-master",
         "mockery/mockery": "~0.9.3",
-        "olcs/olcs-logging": "dev-release/4.190i"
+        "olcs/olcs-logging": "dev-develop"
     },
     "config": {
         "preferred-install": "dist",
