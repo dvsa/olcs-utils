@@ -26,7 +26,8 @@
         "olcs/olcs-devtools": "dev-master",
         "mockery/mockery": "~0.9.3",
         "olcs/olcs-logging": "dev-develop",
-        "xificurk/phpstan-shim": "^0.10.4"
+        "phpstan/phpstan-shim": "^0.10.5",
+        "phpstan/phpstan-mockery": "^0.10.2"
     },
     "config": {
         "preferred-install": "dist",
