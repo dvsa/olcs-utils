@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "olcs/olcs-devtools": "dev-master",
-        "olcs/olcs-logging": "dev-release/4.195a",
+        "olcs/olcs-logging": "dev-develop",
         "phpstan/phpstan-shim": "^0.10.5",
         "phpstan/phpstan-mockery": "^0.10.2",
         "mockery/mockery": "^1.2.0"
