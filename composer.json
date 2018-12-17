@@ -27,7 +27,8 @@
         "olcs/olcs-logging": "dev-develop",
         "phpstan/phpstan-shim": "^0.10.5",
         "phpstan/phpstan-mockery": "^0.10.2",
-        "mockery/mockery": "^1.2.0"
+        "mockery/mockery": "^1.2.0",
+        "johnkary/phpunit-speedtrap": "^3.0"
     },
     "config": {
         "preferred-install": "dist",
