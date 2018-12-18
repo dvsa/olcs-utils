@@ -14,7 +14,7 @@ use Dvsa\Olcs\Utils\Helper\ValueHelper;
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-class ValueHelperTest extends \PHPUnit_Framework_TestCase
+class ValueHelperTest extends \PHPUnit\Framework\TestCase
 {
 
     /**

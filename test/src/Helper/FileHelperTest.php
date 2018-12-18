@@ -7,7 +7,7 @@ use Dvsa\Olcs\Utils\Helper\FileHelper;
 /**
  * @author Dmitry Golubev <dmitrij.golubev@valtech.com>
  */
-class FileHelperTest extends \PHPUnit_Framework_TestCase
+class FileHelperTest extends \PHPUnit\Framework\TestCase
 {
     /** @dataProvider dpTestGetExtension */
     public function testGetExtension($path, $expect)
