@@ -50,7 +50,10 @@
     },
     "extra": {
         "nexus-push": {
-            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS/olcs/olcs-utils"
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS/olcs/olcs-utils",
+            "ignore-dirs": [
+                "test"
+            ]
         }
     }
 }
