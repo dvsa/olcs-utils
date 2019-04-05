@@ -6,16 +6,12 @@
             "packagist": false
         },
         {
-            "type": "vcs",
-            "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-logging.git"
-        },
-        {
-            "url": "http://devrepo.shd.ci.nonprod.dvsa.aws",
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS",
             "type": "composer"
         },
         {
-            "type": "vcs",
-            "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-devtools.git"
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy",
+            "type": "composer"
         }
     ],
     "require": {
@@ -24,8 +20,8 @@
         "elendev/nexus-composer-push": "^0.0.4"
     },
     "require-dev": {
-        "olcs/olcs-devtools": "dev-master",
-        "olcs/olcs-logging": "dev-develop",
+        "olcs/olcs-devtools": "^4.203",
+        "olcs/olcs-logging": "^4.203",
         "phpstan/phpstan-shim": "^0.10.5",
         "phpstan/phpstan-mockery": "^0.10.2",
         "mockery/mockery": "^1.2.0",

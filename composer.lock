@@ -4,16 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14d1ed25cf212216419cfdd632e10c8d",
+    "content-hash": "649a46f946871f2e0a99a9fdbb9d6075",
     "packages": [
         {
             "name": "elendev/nexus-composer-push",
             "version": "v0.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Elendev/nexus-composer-push.git",
-                "reference": "c8ca3207e42078521a203410042e3938dc8da9f9"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/elendev-nexus-composer-push-c8ca3207e42078521a203410042e3938dc8da9f9-zip-4e3818.tar",
@@ -51,11 +46,6 @@
         {
             "name": "guzzlehttp/guzzle",
             "version": "6.3.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "407b0cb880ace85c9b63c5f9551db498cb2d50ba"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/guzzlehttp-guzzle-407b0cb880ace85c9b63c5f9551db498cb2d50ba-zip-633e79.tar",
@@ -116,11 +106,6 @@
         {
             "name": "guzzlehttp/promises",
             "version": "v1.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/promises.git",
-                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/guzzlehttp-promises-a59da6cf61d80060647ff4d3eb2c03a2bc694646-zip-081b1f.tar",
@@ -167,11 +152,6 @@
         {
             "name": "guzzlehttp/psr7",
             "version": "1.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/guzzle/psr7.git",
-                "reference": "9f83dded91781a01c63574e387eaa769be769115"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/guzzlehttp-psr7-9f83dded91781a01c63574e387eaa769be769115-zip-831b1b.tar",
@@ -234,11 +214,6 @@
         {
             "name": "psr/http-message",
             "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/http-message.git",
-                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/psr-http-message-f6561bf28d520154e4b0ec72be95418abe6d9363-zip-7ab320.tar",
@@ -284,11 +259,6 @@
         {
             "name": "ralouphie/getallheaders",
             "version": "2.0.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ralouphie/getallheaders.git",
-                "reference": "5601c8a83fbba7ef674a7369456d12f1e0d0eafa"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/ralouphie-getallheaders-5601c8a83fbba7ef674a7369456d12f1e0d0eafa-zip-8da20c.tar",
@@ -323,17 +293,12 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/filesystem.git",
-                "reference": "e16b9e471703b2c60b95f14d31c1239f68f11601"
-            },
+            "version": "v4.2.5",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-filesystem-e16b9e471703b2c60b95f14d31c1239f68f11601-zip-3cd3df.tar",
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/symfony/filesystem/v4.2.5/symfony-filesystem-v4.2.5.zip",
                 "reference": "e16b9e471703b2c60b95f14d31c1239f68f11601",
-                "shasum": "e3b7a47dd62fd978fd70160aa4ae857130e94ff2"
+                "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
@@ -353,7 +318,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -373,17 +337,12 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/finder.git",
-                "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a"
-            },
+            "version": "v4.2.5",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-finder-267b7002c1b70ea80db0833c3afe05f0fbde580a-zip-ff8a33.tar",
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/symfony/finder/v4.2.5/symfony-finder-v4.2.5.zip",
                 "reference": "267b7002c1b70ea80db0833c3afe05f0fbde580a",
-                "shasum": "bfac7e2d972dc6f5c0ec56e72408234660e4cd57"
+                "shasum": ""
             },
             "require": {
                 "php": "^7.1.3"
@@ -402,7 +361,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -423,11 +381,6 @@
         {
             "name": "symfony/polyfill-ctype",
             "version": "v1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "82ebae02209c21113908c229e9883c419720738a"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-polyfill-ctype-82ebae02209c21113908c229e9883c419720738a-zip-6b93e8.tar",
@@ -481,11 +434,6 @@
         {
             "name": "zendframework/zendframework",
             "version": "2.4.13",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/zendframework.git",
-                "reference": "06bf809653a51e843b7a84dc380ac1d8a0a6a1ea"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/zendframework-zendframework-06bf809653a51e843b7a84dc380ac1d8a0a6a1ea-zip-4d29b5.tar",
@@ -598,11 +546,6 @@
         {
             "name": "zendframework/zendxml",
             "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zendframework/ZendXml.git",
-                "reference": "eceab37a591c9e140772a1470338258857339e00"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/zendframework-zendxml-eceab37a591c9e140772a1470338258857339e00-zip-020fc8.tar",
@@ -646,11 +589,6 @@
         {
             "name": "doctrine/instantiator",
             "version": "1.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "a2c590166b2133a4633738648b6b064edae0814a"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/doctrine-instantiator-a2c590166b2133a4633738648b6b064edae0814a-zip-b09b64.tar",
@@ -702,11 +640,6 @@
         {
             "name": "hamcrest/hamcrest-php",
             "version": "v2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hamcrest/hamcrest-php.git",
-                "reference": "776503d3a8e85d4f9a1148614f95b7a608b046ad"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/hamcrest-hamcrest-php-776503d3a8e85d4f9a1148614f95b7a608b046ad-zip-a48af8.tar",
@@ -750,11 +683,6 @@
         {
             "name": "johnkary/phpunit-speedtrap",
             "version": "v3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johnkary/phpunit-speedtrap.git",
-                "reference": "dac11b8640d4be7a70f336616947fa84f169835a"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/johnkary-phpunit-speedtrap-dac11b8640d4be7a70f336616947fa84f169835a-zip-e8a7e1.tar",
@@ -798,11 +726,6 @@
         {
             "name": "mockery/mockery",
             "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mockery/mockery.git",
-                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/mockery-mockery-0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2-zip-cdbcdc.tar",
@@ -863,11 +786,6 @@
         {
             "name": "myclabs/deep-copy",
             "version": "1.8.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/myclabs-deep-copy-3e01bdad3e18354c3dce54466b7fbe33a9f9f7f8-zip-1d5827.tar",
@@ -910,32 +828,29 @@
         },
         {
             "name": "olcs/coding-standards",
-            "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-coding-standards.git",
-                "reference": "d07fc9a07d5bbf93ead0a8527172ace93de409d8"
-            },
+            "version": "4.203.0",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/olcs-coding-standards-1.2.1-4097ef.tar",
-                "reference": "d07fc9a07d5bbf93ead0a8527172ace93de409d8",
-                "shasum": "5159e82f1ee59877dd78575a538b744c69f46af7"
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS/olcs/coding-standards/4.203.0/olcs-coding-standards-4.203.0.zip",
+                "reference": "c9ffe593535ef589179c353ec381e0e7f563dc25",
+                "shasum": "c9ffe593535ef589179c353ec381e0e7f563dc25"
             },
             "type": "library",
             "description": "OLCS CodeSniffer and MessDetector rule sets",
-            "time": "2018-03-13T16:45:48+00:00"
+            "time": "2019-04-04T14:04:08+00:00"
         },
         {
             "name": "olcs/olcs-devtools",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-devtools.git",
-                "reference": "8d528a54a803174745f3ff53a3b94d210c8c26a6"
+            "version": "4.203.2",
+            "dist": {
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS/olcs/olcs-devtools/4.203.2/olcs-olcs-devtools-4.203.2.zip",
+                "reference": "a2454bf3aac7c47d8b069446b4ba50ccce1ae42c",
+                "shasum": "a2454bf3aac7c47d8b069446b4ba50ccce1ae42c"
             },
             "require": {
-                "olcs/coding-standards": "^1.2.1",
+                "elendev/nexus-composer-push": "^0.0.4",
+                "olcs/coding-standards": "^4.203",
                 "php": ">=5.4",
                 "phpmd/phpmd": "~2.2",
                 "phpunit/phpcov": "5.*",
@@ -944,24 +859,31 @@
             },
             "bin": [
                 "bin/review",
-                "bin/composer-update-syms"
+                "bin/composer-update-syms",
+                "bin/release"
             ],
             "type": "library",
+            "extra": {
+                "nexus-push": {
+                    "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/olcs-devtools/"
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Devtools\\": "src/"
                 }
             },
             "description": "Dev tools",
-            "time": "2018-12-14T13:31:23+00:00"
+            "time": "2019-04-05T14:30:27+00:00"
         },
         {
             "name": "olcs/olcs-logging",
-            "version": "dev-develop",
-            "source": {
-                "type": "git",
-                "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-logging.git",
-                "reference": "dc6a7799aac4bda55a91d1de3c9f7a26611847c5"
+            "version": "4.203.1",
+            "dist": {
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS/olcs/olcs-logging/4.203.1/olcs-olcs-logging-4.203.1.zip",
+                "reference": "1cddbd48bb88bc08bcc2b6180f213350ca8d3005",
+                "shasum": "1cddbd48bb88bc08bcc2b6180f213350ca8d3005"
             },
             "require": {
                 "php": ">=5.4",
@@ -1008,16 +930,11 @@
                 ]
             },
             "description": "Logging Module for Olcs",
-            "time": "2019-03-18T14:33:34+00:00"
+            "time": "2019-04-05T14:06:42+00:00"
         },
         {
             "name": "pdepend/pdepend",
             "version": "2.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pdepend/pdepend.git",
-                "reference": "9daf26d0368d4a12bed1cacae1a9f3a6f0adf239"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/pdepend-pdepend-9daf26d0368d4a12bed1cacae1a9f3a6f0adf239-zip-0d45b9.tar",
@@ -1053,11 +970,6 @@
         {
             "name": "phar-io/manifest",
             "version": "1.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phar-io/manifest.git",
-                "reference": "7761fcacf03b4d4f16e7ccb606d4879ca431fcf4"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phar-io-manifest-7761fcacf03b4d4f16e7ccb606d4879ca431fcf4-zip-16fcd4.tar",
@@ -1108,11 +1020,6 @@
         {
             "name": "phar-io/version",
             "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phar-io/version.git",
-                "reference": "45a2ec53a73c70ce41d55cedef9063630abaf1b6"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phar-io-version-45a2ec53a73c70ce41d55cedef9063630abaf1b6-zip-8d9b61.tar",
@@ -1155,11 +1062,6 @@
         {
             "name": "phpdocumentor/reflection-common",
             "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-                "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpdocumentor-reflection-common-21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6-zip-5ca449.tar",
@@ -1209,11 +1111,6 @@
         {
             "name": "phpdocumentor/reflection-docblock",
             "version": "4.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "94fd0001232e47129dd3504189fa1c7225010d08"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpdocumentor-reflection-docblock-94fd0001232e47129dd3504189fa1c7225010d08-zip-9283bc.tar",
@@ -1260,11 +1157,6 @@
         {
             "name": "phpdocumentor/type-resolver",
             "version": "0.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpDocumentor/TypeResolver.git",
-                "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpdocumentor-type-resolver-9c977708995954784726e25d0cd1dddf4e65b0f7-zip-28400d.tar",
@@ -1307,11 +1199,6 @@
         {
             "name": "phpmd/phpmd",
             "version": "2.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpmd/phpmd.git",
-                "reference": "4e9924b2c157a3eb64395460fcf56b31badc8374"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpmd-phpmd-4e9924b2c157a3eb64395460fcf56b31badc8374-zip-66676a.tar",
@@ -1373,11 +1260,6 @@
         {
             "name": "phpspec/prophecy",
             "version": "1.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "4ba436b55987b4bf311cb7c6ba82aa528aac0a06"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpspec-prophecy-4ba436b55987b4bf311cb7c6ba82aa528aac0a06-zip-cb340e.tar",
@@ -1436,11 +1318,6 @@
         {
             "name": "phpstan/phpstan-mockery",
             "version": "0.10.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan-mockery.git",
-                "reference": "14d568b6b56c957c9ae5330603303a367b21f0e9"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpstan-phpstan-mockery-14d568b6b56c957c9ae5330603303a367b21f0e9-zip-2bda4d.tar",
@@ -1485,11 +1362,6 @@
         {
             "name": "phpstan/phpstan-shim",
             "version": "0.10.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan-shim.git",
-                "reference": "7f433a1af3a3e27bea056552e42411c9d9af9c8e"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpstan-phpstan-shim-7f433a1af3a3e27bea056552e42411c9d9af9c8e-zip-5dcf31.tar",
@@ -1529,11 +1401,6 @@
         {
             "name": "phpunit/php-code-coverage",
             "version": "6.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "807e6013b00af69b6c5d9ceb4282d0393dbb9d8d"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-code-coverage-807e6013b00af69b6c5d9ceb4282d0393dbb9d8d-zip-afe961.tar",
@@ -1592,11 +1459,6 @@
         {
             "name": "phpunit/php-file-iterator",
             "version": "2.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-file-iterator.git",
-                "reference": "050bedf145a257b1ff02746c31894800e5122946"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-file-iterator-050bedf145a257b1ff02746c31894800e5122946-zip-f3c112.tar",
@@ -1642,11 +1504,6 @@
         {
             "name": "phpunit/php-text-template",
             "version": "1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-text-template-31f8b717e51d9a2afca6c9f046f5d69fc27c8686-zip-c6bcbd.tar",
@@ -1683,11 +1540,6 @@
         {
             "name": "phpunit/php-timer",
             "version": "2.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-timer-8b389aebe1b8b0578430bda0c7c95a829608e059-zip-4447e8.tar",
@@ -1732,11 +1584,6 @@
         {
             "name": "phpunit/php-token-stream",
             "version": "3.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "c99e3be9d3e85f60646f152f9002d46ed7770d18"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-php-token-stream-c99e3be9d3e85f60646f152f9002d46ed7770d18-zip-af8207.tar",
@@ -1781,11 +1628,6 @@
         {
             "name": "phpunit/phpcov",
             "version": "5.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpcov.git",
-                "reference": "72fb974e6fe9b39d7e0b0d44061d2ba4c49ee0b8"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-phpcov-72fb974e6fe9b39d7e0b0d44061d2ba4c49ee0b8-zip-9684c7.tar",
@@ -1833,11 +1675,6 @@
         {
             "name": "phpunit/phpunit",
             "version": "7.5.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c29c0525cf4572c11efe1db49a8b8aee9dfac58a"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/phpunit-phpunit-c29c0525cf4572c11efe1db49a8b8aee9dfac58a-zip-b3e28d.tar",
@@ -1917,11 +1754,6 @@
         {
             "name": "psr/container",
             "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/container.git",
-                "reference": "b7ce3b176482dbbc1245ebf52b181af44c2cf55f"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/psr-container-b7ce3b176482dbbc1245ebf52b181af44c2cf55f-zip-34fef8.tar",
@@ -1966,11 +1798,6 @@
         {
             "name": "psr/log",
             "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-fig/log.git",
-                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/psr-log-6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd-zip-b599c5.tar",
@@ -2013,11 +1840,6 @@
         {
             "name": "sebastian/code-unit-reverse-lookup",
             "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/code-unit-reverse-lookup.git",
-                "reference": "4419fcdb5eabb9caa61a27c7a1db532a6b55dd18"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-code-unit-reverse-lookup-4419fcdb5eabb9caa61a27c7a1db532a6b55dd18-zip-2b8d33.tar",
@@ -2058,11 +1880,6 @@
         {
             "name": "sebastian/comparator",
             "version": "3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "5de4fc177adf9bce8df98d8d141a7559d7ccf6da"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-comparator-5de4fc177adf9bce8df98d8d141a7559d7ccf6da-zip-bbaa6e.tar",
@@ -2122,11 +1939,6 @@
         {
             "name": "sebastian/diff",
             "version": "3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/diff.git",
-                "reference": "720fcc7e9b5cf384ea68d9d930d480907a0c1a29"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-diff-720fcc7e9b5cf384ea68d9d930d480907a0c1a29-zip-e6ed91.tar",
@@ -2178,11 +1990,6 @@
         {
             "name": "sebastian/environment",
             "version": "4.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "6fda8ce1974b62b14935adc02a9ed38252eca656"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-environment-6fda8ce1974b62b14935adc02a9ed38252eca656-zip-3e0220.tar",
@@ -2231,11 +2038,6 @@
         {
             "name": "sebastian/exporter",
             "version": "3.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "234199f4528de6d12aaa58b612e98f7d36adb937"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-exporter-234199f4528de6d12aaa58b612e98f7d36adb937-zip-ba849f.tar",
@@ -2298,11 +2100,6 @@
         {
             "name": "sebastian/finder-facade",
             "version": "1.2.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/finder-facade.git",
-                "reference": "4a3174709c2dc565fe5fb26fcf827f6a1fc7b09f"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-finder-facade-4a3174709c2dc565fe5fb26fcf827f6a1fc7b09f-zip-ba105e.tar",
@@ -2337,11 +2134,6 @@
         {
             "name": "sebastian/global-state",
             "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/global-state.git",
-                "reference": "e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-global-state-e8ba02eed7bbbb9e59e43dedd3dddeff4a56b0c4-zip-51dbeb.tar",
@@ -2388,11 +2180,6 @@
         {
             "name": "sebastian/object-enumerator",
             "version": "3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/object-enumerator.git",
-                "reference": "7cfd9e65d11ffb5af41198476395774d4c8a84c5"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-object-enumerator-7cfd9e65d11ffb5af41198476395774d4c8a84c5-zip-360ba9.tar",
@@ -2435,11 +2222,6 @@
         {
             "name": "sebastian/object-reflector",
             "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/object-reflector.git",
-                "reference": "773f97c67f28de00d397be301821b06708fca0be"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-object-reflector-773f97c67f28de00d397be301821b06708fca0be-zip-56c4ab.tar",
@@ -2480,11 +2262,6 @@
         {
             "name": "sebastian/recursion-context",
             "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-recursion-context-5b0cd723502bac3b006cbf3dbf7a1e3fcefe4fa8-zip-ab6a2f.tar",
@@ -2533,11 +2310,6 @@
         {
             "name": "sebastian/resource-operations",
             "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/resource-operations.git",
-                "reference": "4d7a795d35b889bf80a0cc04e08d77cedfa917a9"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-resource-operations-4d7a795d35b889bf80a0cc04e08d77cedfa917a9-zip-41a624.tar",
@@ -2575,11 +2347,6 @@
         {
             "name": "sebastian/version",
             "version": "2.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "99732be0ddb3361e16ad77b68ba41efc8e979019"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/sebastian-version-99732be0ddb3361e16ad77b68ba41efc8e979019-zip-0eee83.tar",
@@ -2618,11 +2385,6 @@
         {
             "name": "squizlabs/php_codesniffer",
             "version": "3.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "5b4333b4010625d29580eb4a41f1e53251be6baa"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/squizlabs-php_codesniffer-5b4333b4010625d29580eb4a41f1e53251be6baa-zip-8f0b21.tar",
@@ -2668,17 +2430,12 @@
         },
         {
             "name": "symfony/config",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/config.git",
-                "reference": "7f70d79c7a24a94f8e98abb988049403a53d7b31"
-            },
+            "version": "v4.2.5",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-config-7f70d79c7a24a94f8e98abb988049403a53d7b31-zip-04eec8.tar",
-                "reference": "7f70d79c7a24a94f8e98abb988049403a53d7b31",
-                "shasum": "cec7fedb066ef8d13c17fa6f276425711eb1ef38"
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/symfony/config/v4.2.5/symfony-config-v4.2.5.zip",
+                "reference": "0e745ead307d5dcd4e163e94a47ec04b1428943f",
+                "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
@@ -2711,7 +2468,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2727,21 +2483,16 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-04-01T14:03:25+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9"
-            },
+            "version": "v4.2.5",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-console-9dc2299a016497f9ee620be94524e6c0af0280a9-zip-6fbeae.tar",
-                "reference": "9dc2299a016497f9ee620be94524e6c0af0280a9",
-                "shasum": "0f27f2e5f83e50f481ac7ec3adffbb7f2fb4518f"
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/symfony/console/v4.2.5/symfony-console-v4.2.5.zip",
+                "reference": "24206aff3efe6962593297e57ef697ebb220e384",
+                "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
@@ -2783,7 +2534,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2799,16 +2549,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-04-01T07:32:59+00:00"
         },
         {
             "name": "symfony/contracts",
             "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/contracts.git",
-                "reference": "1aa7ab2429c3d594dd70689604b5cf7421254cdf"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-contracts-1aa7ab2429c3d594dd70689604b5cf7421254cdf-zip-aa3604.tar",
@@ -2871,17 +2616,12 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "cdadb3765df7c89ac93628743913b92bb91f1704"
-            },
+            "version": "v4.2.5",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-dependency-injection-cdadb3765df7c89ac93628743913b92bb91f1704-zip-81405a.tar",
-                "reference": "cdadb3765df7c89ac93628743913b92bb91f1704",
-                "shasum": "9903ea30b495e86bb6a16616af6426ff942605f3"
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/symfony/dependency-injection/v4.2.5/symfony-dependency-injection-v4.2.5.zip",
+                "reference": "1806e43ff6bff57398d33b326cd753a12d9f434f",
+                "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
@@ -2924,7 +2664,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2940,16 +2679,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2019-02-23T15:17:42+00:00"
+            "time": "2019-03-30T15:58:42+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
             "version": "v1.11.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/symfony-polyfill-mbstring-fe5e94c604826c35a32fa832f35bd036b6799609-zip-74a003.tar",
@@ -3004,11 +2738,6 @@
         {
             "name": "theseer/fdomdocument",
             "version": "1.6.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/theseer/fDOMDocument.git",
-                "reference": "6e8203e40a32a9c770bcb62fe37e68b948da6dca"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/theseer-fdomdocument-6e8203e40a32a9c770bcb62fe37e68b948da6dca-zip-e35ff2.tar",
@@ -3043,17 +2772,12 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
-            },
+            "version": "1.1.2",
             "dist": {
-                "type": "tar",
-                "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/theseer-tokenizer-cb2f008f3f05af2893a87208fe6a6c4985483f8b-zip-1b9019.tar",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "shasum": "c2b5e658546e4dd121e563d0e7738341dd58b884"
+                "type": "zip",
+                "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy/theseer/tokenizer/1.1.2/theseer-tokenizer-1.1.2.zip",
+                "reference": "1c42705be2b6c1de5904f8afacef5895cab44bf8",
+                "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
@@ -3067,7 +2791,6 @@
                     "src/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3079,16 +2802,11 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-04T09:56:43+00:00"
         },
         {
             "name": "webmozart/assert",
             "version": "1.4.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
-                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
-            },
             "dist": {
                 "type": "tar",
                 "url": "http://devrepo.shd.ci.nonprod.dvsa.aws/dist/webmozart-assert-83e253c8e0be5b0257b881e1827274667c5c17a9-zip-cd61f8.tar",
@@ -3135,10 +2853,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "olcs/olcs-devtools": 20,
-        "olcs/olcs-logging": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
