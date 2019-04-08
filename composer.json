@@ -6,25 +6,22 @@
             "packagist": false
         },
         {
-            "type": "vcs",
-            "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-logging.git"
-        },
-        {
-            "url": "http://devrepo.shd.ci.nonprod.dvsa.aws",
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/OLCS",
             "type": "composer"
         },
         {
-            "type": "vcs",
-            "url": "git@repo.shd.ci.nonprod.dvsa.aws:olcs/olcs-devtools.git"
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy",
+            "type": "composer"
         }
     ],
     "require": {
         "php": ">=5.4",
-        "zendframework/zendframework": "~2.4.0"
+        "zendframework/zendframework": "~2.4.0",
+        "elendev/nexus-composer-push": "^0.0.4"
     },
     "require-dev": {
-        "olcs/olcs-devtools": "dev-master",
-        "olcs/olcs-logging": "dev-develop",
+        "olcs/olcs-devtools": "^4.203",
+        "olcs/olcs-logging": "^4.203",
         "phpstan/phpstan-shim": "^0.10.5",
         "phpstan/phpstan-mockery": "^0.10.2",
         "mockery/mockery": "^1.2.0",
@@ -32,7 +29,7 @@
     },
     "config": {
         "preferred-install": "dist",
-        "secure-http" : false
+        "secure-http": false
     },
     "autoload": {
         "psr-4": {
@@ -45,6 +42,15 @@
         "cs": "vendor/bin/phpcs --severity=1 --standard=vendor/olcs/coding-standards/Profiles/DVSA/CS/ruleset.xml",
         "coverage": "vendor/bin/phpunit -c test/phpunit.xml --coverage-html ./test/coverage/html",
         "sonar": "vendor/bin/phpunit -c test/phpunit.xml --coverage-clover ./test/coverage/coverage-report.clover --log-junit ./test/coverage/log.junit",
-        "update-syms": "vendor/bin/composer-update-syms"
+        "update-syms": "vendor/bin/composer-update-syms",
+        "release": "release"
+    },
+    "extra": {
+        "nexus-push": {
+            "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/olcs-utils",
+            "ignore-dirs": [
+                "test"
+            ]
+        }
     }
 }
