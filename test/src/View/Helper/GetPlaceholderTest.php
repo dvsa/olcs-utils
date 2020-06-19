@@ -23,7 +23,7 @@ class GetPlaceholderTest extends MockeryTestCase
 
     protected $sut;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->container = m::mock();
 

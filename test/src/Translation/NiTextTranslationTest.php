@@ -30,7 +30,7 @@ class NiTextTranslationTest extends MockeryTestCase
      */
     protected $translator;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->translator = m::mock(Translator::class)->makePartial();
         $this->translator->setLocale('en_GB');
