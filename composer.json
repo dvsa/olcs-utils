@@ -16,7 +16,6 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0",
-        "zendframework/zend-cache": "^2.5",
         "zendframework/zend-eventmanager": "^2.5",
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-i18n": "^2.5",
