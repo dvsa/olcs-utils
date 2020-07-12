@@ -34,7 +34,7 @@ class MissingTranslationProcessorTest extends TestCase
     /** @var m\MockInterface */
     protected $getPlaceholder;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

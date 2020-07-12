@@ -13,9 +13,10 @@
             "url": "http://nexus.shd.ci.nonprod.dvsa.aws/repository/Packagist-Proxy",
             "type": "composer"
         }
+
     ],
     "require": {
-        "php": "^5.5 || ^7.0",
+        "php": ">=7.2",
         "zendframework/zend-eventmanager": "^2.5",
         "zendframework/zend-http": "^2.5",
         "zendframework/zend-i18n": "^2.5",
@@ -27,11 +28,7 @@
     },
     "require-dev": {
         "olcs/olcs-devtools": "~4.206.0",
-        "olcs/olcs-logging": "~4.206.0",
-        "phpstan/phpstan-shim": "^0.10.5",
-        "phpstan/phpstan-mockery": "^0.10.2",
-        "mockery/mockery": "^1.2.0",
-        "johnkary/phpunit-speedtrap": "^3.0"
+        "olcs/olcs-logging": "~4.206.0"
     },
     "config": {
         "preferred-install": "dist",

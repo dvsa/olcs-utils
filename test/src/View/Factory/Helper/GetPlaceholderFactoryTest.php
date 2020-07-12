@@ -21,7 +21,7 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
     /** @var  m\MockInterface */
     protected $mockPlaceholder;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->sut = new GetPlaceholderFactory();
 

@@ -21,7 +21,7 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
     /** @var  m\MockInterface|Client\Adapter\Curl */
     private $mockAdapter;
 
-    public function setUp()
+    public function setUp(): void
     {
         $writer = new Mock();
 
