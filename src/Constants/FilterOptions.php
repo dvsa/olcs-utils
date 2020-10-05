@@ -9,4 +9,5 @@ class FilterOptions
 {
     const SHOW_ALL = 'tsw_all';
     const SHOW_SELF_ONLY = 'tsw_self_only';
+    const EXCLUDE_IRHP = 'tsw_exclude_irhp';
 }
