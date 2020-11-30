@@ -5,9 +5,13 @@ return [
         'factories' => [
             'Utils\NiTextTranslation' => \Dvsa\Olcs\Utils\Translation\NiTextTranslation::class,
             'Utils\MissingTranslationProcessor' => \Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor::class,
-            'Utils\MissingTranslationLogger' => \Dvsa\Olcs\Utils\Translation\MissingTranslationLogger::class,
             \Dvsa\Olcs\Utils\Client\HttpExternalClientFactory::class =>
                 \Dvsa\Olcs\Utils\Client\HttpExternalClientFactory::class,
+        ],
+        'delegators' => [
+            'MvcTranslator' => [
+                \Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory::class,
+            ]
         ],
         'shared' => [
             \Dvsa\Olcs\Utils\Client\HttpExternalClientFactory::class => false,
