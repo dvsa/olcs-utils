@@ -10,7 +10,7 @@ namespace Dvsa\OlcsTest\Utils\View\Helper;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Get Placeholder Test

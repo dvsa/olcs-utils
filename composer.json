@@ -13,18 +13,18 @@
             "url": "http://nexus.olcs.dev-dvsacloud.uk/repository/Packagist-Proxy",
             "type": "composer"
         }
-
     ],
     "require": {
         "php": ">=7.2",
-        "zendframework/zend-eventmanager": "^2.5",
-        "zendframework/zend-http": "^2.5",
-        "zendframework/zend-i18n": "^2.5",
-        "zendframework/zend-log": "^2.5",
-        "zendframework/zend-servicemanager": "^2.5",
-        "zendframework/zend-uri": "^2.5",
-        "zendframework/zend-view": "^2.5",
-        "elendev/nexus-composer-push": "^0.1"
+        "laminas/laminas-eventmanager": "^2.5",
+        "laminas/laminas-http": "^2.5",
+        "laminas/laminas-i18n": "^2.5",
+        "laminas/laminas-log": "^2.5",
+        "laminas/laminas-servicemanager": "^2.5",
+        "laminas/laminas-uri": "^2.5",
+        "laminas/laminas-view": "^2.5",
+        "elendev/nexus-composer-push": "^0.1",
+        "laminas/laminas-dependency-plugin": "^2.0"
     },
     "require-dev": {
         "olcs/olcs-devtools": "~4.206.0",

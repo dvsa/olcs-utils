@@ -3,11 +3,11 @@
 namespace Dvsa\Olcs\Utils\Client;
 
 use Olcs\Logging\Log\Logger;
-use Zend\Http\Client;
-use Zend\Http\Client\Adapter\AdapterInterface;
-use Zend\Http\Client\Adapter\AdapterInterface as HttpAdapter;
-use Zend\Http\Client\Adapter\StreamInterface;
-use Zend\Http\Response;
+use Laminas\Http\Client;
+use Laminas\Http\Client\Adapter\AdapterInterface;
+use Laminas\Http\Client\Adapter\AdapterInterface as HttpAdapter;
+use Laminas\Http\Client\Adapter\StreamInterface;
+use Laminas\Http\Response;
 
 /**
  * Client Adapter Logging Wrapper
@@ -129,7 +129,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      * Send request to the remote server
      *
      * @param string        $method  Method
-     * @param \Zend\Uri\Uri $url     Url
+     * @param \Laminas\Uri\Uri $url     Url
      * @param string        $httpVer Http protocol version
      * @param array         $headers Http Headers
      * @param string        $body    Body

@@ -10,7 +10,7 @@ namespace Dvsa\OlcsTest\Utils\Translation;
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Zend\Mvc\I18n\Translator;
+use Laminas\Mvc\I18n\Translator;
 
 /**
  * Translator Delegator Test

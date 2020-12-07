@@ -8,9 +8,9 @@
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\I18n\Translator\Translator;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\I18n\Translator\Translator;
 
 /**
  * Ni Text Translation

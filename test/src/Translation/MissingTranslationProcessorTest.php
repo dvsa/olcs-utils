@@ -6,8 +6,8 @@ use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
 use Mockery as m;
-use Zend\EventManager\EventManagerInterface;
-use Zend\I18n\Translator\Translator;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\I18n\Translator\Translator;
 use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
 
 /**
@@ -17,12 +17,12 @@ use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
 class MissingTranslationProcessorTest extends TestCase
 {
     /**
-     * @var \Zend\View\Renderer\RendererInterface|m\MockInterface
+     * @var \Laminas\View\Renderer\RendererInterface|m\MockInterface
      */
     protected $mockRenderer;
 
     /**
-     * @var \Zend\View\Resolver\ResolverInterface|m\MockInterface
+     * @var \Laminas\View\Resolver\ResolverInterface|m\MockInterface
      */
     protected $mockResolver;
 
@@ -38,13 +38,13 @@ class MissingTranslationProcessorTest extends TestCase
     {
         parent::setUp();
 
-        $this->mockRenderer = m::mock('Zend\View\Renderer\RendererInterface');
-        $this->mockResolver = m::mock('Zend\View\Resolver\ResolverInterface');
+        $this->mockRenderer = m::mock('Laminas\View\Renderer\RendererInterface');
+        $this->mockResolver = m::mock('Laminas\View\Resolver\ResolverInterface');
         $this->getPlaceholder = m::mock(GetPlaceholderFactory::class);
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);
-        $sm->setService('Zend\View\Resolver\TemplatePathStack', $this->mockResolver);
+        $sm->setService('Laminas\View\Resolver\TemplatePathStack', $this->mockResolver);
         $sm->setService('ViewHelperManager', $sm);
         $sm->setService('getPlaceholder', $this->getPlaceholder);
 
@@ -65,7 +65,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testProcessEventForPartial()
     {
-        $event = m::mock(\Zend\EventManager\Event::class)
+        $event = m::mock(\Laminas\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -94,7 +94,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testProcessEventForPartialNi()
     {
-        $event = m::mock(\Zend\EventManager\Event::class)
+        $event = m::mock(\Laminas\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -128,15 +128,15 @@ class MissingTranslationProcessorTest extends TestCase
     public function testProcessEventForNestedTranslation()
     {
         /**
-         * @var \Zend\I18n\Translator\TranslatorInterface
+         * @var \Laminas\I18n\Translator\TranslatorInterface
          */
-        $translator = m::mock('Zend\I18n\Translator\TranslatorInterface')
+        $translator = m::mock('Laminas\I18n\Translator\TranslatorInterface')
             ->shouldReceive('translate')
             ->with('nested.translation.key')
             ->andReturn('translated substring')
             ->getMock();
 
-        $event = m::mock(\Zend\EventManager\Event::class)
+        $event = m::mock(\Laminas\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn($translator)
@@ -160,7 +160,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testOtherMissingKeysDontTriggerTemplateResolver()
     {
-        $event = m::mock(\Zend\EventManager\Event::class)
+        $event = m::mock(\Laminas\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()
@@ -177,7 +177,7 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testProcessEventForPartialWithPlaceholder()
     {
-        $event = m::mock(\Zend\EventManager\Event::class)
+        $event = m::mock(\Laminas\EventManager\Event::class)
             ->shouldReceive('getTarget')
             ->once()
             ->andReturn()

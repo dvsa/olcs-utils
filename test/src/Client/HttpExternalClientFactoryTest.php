@@ -15,28 +15,28 @@ class HttpExternalClientFactoryTest extends MockeryTestCase
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(\Zend\ServiceManager\ServiceLocatorInterface::class);
+        $mockSl = m::mock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
         $mockSl->shouldReceive('get')->with('config')->once()->andReturn([]);
 
         $object = $sut->createService($mockSl);
 
-        $this->assertInstanceOf(\Zend\Http\Client::class, $object);
+        $this->assertInstanceOf(\Laminas\Http\Client::class, $object);
         $this->assertInstanceOf(\Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper::class, $object->getAdapter());
-        $this->assertInstanceOf(\Zend\Http\Client\Adapter\Socket::class, $object->getAdapter()->getAdapter());
+        $this->assertInstanceOf(\Laminas\Http\Client\Adapter\Socket::class, $object->getAdapter()->getAdapter());
     }
 
     public function testFactoryConfig()
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(\Zend\ServiceManager\ServiceLocatorInterface::class);
+        $mockSl = m::mock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
         $mockSl->shouldReceive('get')->with('config')->once()
-            ->andReturn(['http_external' => ['adapter' => \Zend\Http\Client\Adapter\Curl::class]]);
+            ->andReturn(['http_external' => ['adapter' => \Laminas\Http\Client\Adapter\Curl::class]]);
 
         $object = $sut->createService($mockSl);
 
-        $this->assertInstanceOf(\Zend\Http\Client::class, $object);
+        $this->assertInstanceOf(\Laminas\Http\Client::class, $object);
         $this->assertInstanceOf(\Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper::class, $object->getAdapter());
-        $this->assertInstanceOf(\Zend\Http\Client\Adapter\Curl::class, $object->getAdapter()->getAdapter());
+        $this->assertInstanceOf(\Laminas\Http\Client\Adapter\Curl::class, $object->getAdapter()->getAdapter());
     }
 }

@@ -3,9 +3,9 @@
 namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * Get Placeholder
