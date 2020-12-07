@@ -6,8 +6,8 @@ use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Helper\Placeholder;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Helper\Placeholder;
 
 /**
  * Get Placeholder Factory Test

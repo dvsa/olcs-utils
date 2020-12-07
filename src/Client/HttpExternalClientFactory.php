@@ -2,8 +2,8 @@
 
 namespace Dvsa\Olcs\Utils\Client;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Class HttpProxyClientFactory
@@ -23,11 +23,11 @@ class HttpExternalClientFactory implements FactoryInterface
      *
      * @param ServiceLocatorInterface $sl Service manager
      *
-     * @return \Zend\Http\Client
+     * @return \Laminas\Http\Client
      */
     public function createService(ServiceLocatorInterface $sl)
     {
-        $client = new \Zend\Http\Client();
+        $client = new \Laminas\Http\Client();
 
         $config = $sl->get('config');
         if (!empty($config[self::CONFIG_KEY])) {

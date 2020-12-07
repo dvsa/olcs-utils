@@ -42,11 +42,11 @@ class Bootstrap
     /**
      * Changed this method to return a mock
      *
-     * @return \Zend\ServiceManager\ServiceManager
+     * @return \Laminas\ServiceManager\ServiceManager
      */
     public static function getServiceManager()
     {
-        $sm = m::mock('\Zend\ServiceManager\ServiceManager')
+        $sm = m::mock('\Laminas\ServiceManager\ServiceManager')
             ->makePartial()
             ->setAllowOverride(true);
 

@@ -7,7 +7,7 @@
  */
 namespace Dvsa\Olcs\Utils\View\Helper;
 
-use Zend\View\Model\ViewModel;
+use Laminas\View\Model\ViewModel;
 
 /**
  * Get Placeholder

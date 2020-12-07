@@ -7,8 +7,8 @@
  */
 namespace Dvsa\Olcs\Utils\Translation;
 
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\Mvc\I18n\Translator;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\Mvc\I18n\Translator;
 
 /**
  * Translator Delegator

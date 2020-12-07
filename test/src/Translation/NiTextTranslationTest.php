@@ -11,7 +11,7 @@ use Dvsa\Olcs\Utils\Translation\NiTextTranslation;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Zend\I18n\Translator\Translator;
+use Laminas\I18n\Translator\Translator;
 
 /**
  * Ni Text Translation Test

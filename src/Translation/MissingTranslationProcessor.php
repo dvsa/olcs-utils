@@ -7,14 +7,14 @@
  */
 namespace Dvsa\Olcs\Utils\Translation;
 
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\ListenerAggregateInterface;
-use Zend\EventManager\ListenerAggregateTrait;
-use Zend\I18n\Translator\Translator;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\View\Renderer\RendererInterface as Renderer;
-use Zend\View\Resolver\ResolverInterface as Resolver;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\ListenerAggregateInterface;
+use Laminas\EventManager\ListenerAggregateTrait;
+use Laminas\I18n\Translator\Translator;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\View\Renderer\RendererInterface as Renderer;
+use Laminas\View\Resolver\ResolverInterface as Resolver;
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 
 /**
@@ -56,7 +56,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
             $this->placeholder = $serviceLocator->get('ViewHelperManager')->get('getPlaceholder');
         }
 
-        $this->resolver = $serviceLocator->get('Zend\View\Resolver\TemplatePathStack');
+        $this->resolver = $serviceLocator->get('Laminas\View\Resolver\TemplatePathStack');
 
         return $this;
     }
@@ -76,11 +76,11 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     /**
      * Process an event
      *
-     * @param \Zend\EventManager\Event $e Event
+     * @param \Laminas\EventManager\Event $e Event
      *
      * @return string
      */
-    public function processEvent(\Zend\EventManager\Event $e)
+    public function processEvent(\Laminas\EventManager\Event $e)
     {
         $translator = $e->getTarget();
         $params = $e->getParams();

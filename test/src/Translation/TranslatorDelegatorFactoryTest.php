@@ -11,10 +11,10 @@ use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
-use Zend\I18n\Translator\LoaderPluginManager;
-use Zend\Mvc\I18n\Translator;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\I18n\Translator\Loader\RemoteLoaderInterface;
+use Laminas\I18n\Translator\LoaderPluginManager;
+use Laminas\Mvc\I18n\Translator;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Translator Delegator Factory Test

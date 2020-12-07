@@ -6,8 +6,8 @@ use Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory;
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
  * @covers Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory

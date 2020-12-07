@@ -3,8 +3,8 @@
 namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Factory for @see Dvsa\Olcs\Snapshot\View\Helper\AssetPath
@@ -12,7 +12,7 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class AssetPathFactory implements FactoryInterface
 {
     /**
-     * @param \Zend\View\HelperPluginManager $sl
+     * @param \Laminas\View\HelperPluginManager $sl
      */
     public function createService(ServiceLocatorInterface $sl)
     {

@@ -7,10 +7,10 @@
  */
 namespace Dvsa\Olcs\Utils\Translation;
 
-use Zend\I18n\Translator\Loader\RemoteLoaderInterface;
-use Zend\I18n\Translator\Translator;
-use Zend\ServiceManager\DelegatorFactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\I18n\Translator\Loader\RemoteLoaderInterface;
+use Laminas\I18n\Translator\Translator;
+use Laminas\ServiceManager\DelegatorFactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
  * Translator Delegator Factory

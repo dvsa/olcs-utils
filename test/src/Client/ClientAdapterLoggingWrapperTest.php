@@ -6,9 +6,9 @@ use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Olcs\Logging\Log\Logger;
-use Zend\Http\Client;
-use Zend\Http\Client\Adapter\AdapterInterface;
-use Zend\Log\Writer\Mock;
+use Laminas\Http\Client;
+use Laminas\Http\Client\Adapter\AdapterInterface;
+use Laminas\Log\Writer\Mock;
 
 /**
  * @covers  Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper
@@ -27,7 +27,7 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
 
         $this->mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
 
-        $mockLogger = new \Zend\Log\Logger();
+        $mockLogger = new \Laminas\Log\Logger();
         $mockLogger->addWriter($writer);
 
         $this->sut = new ClientAdapterLoggingWrapper();
