@@ -7,6 +7,7 @@
  */
 namespace Dvsa\Olcs\Utils\Translation;
 
+use Interop\Container\ContainerInterface;
 use Laminas\I18n\Translator\Loader\RemoteLoaderInterface;
 use Laminas\I18n\Translator\Translator;
 use Laminas\ServiceManager\DelegatorFactoryInterface;
@@ -19,12 +20,15 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
  */
 class TranslatorDelegatorFactory implements DelegatorFactoryInterface
 {
-    public function createDelegatorWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName, $callback)
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, callable $callback, array $options = null)
     {
         /** @var Translator $realTranslator */
         $realTranslator = $callback();
 
-        $config = $serviceLocator->get('Config');
+        $config = $container->get('Config');
 
         //use the same remote translation loader to load replacements
         /** @var RemoteLoaderInterface $translationLoader */
@@ -33,5 +37,14 @@ class TranslatorDelegatorFactory implements DelegatorFactoryInterface
         $replacements = $translationLoader->loadReplacements();
 
         return new TranslatorDelegator($realTranslator, $replacements);
+    }
+
+    /**
+     * {@inheritdoc}
+     * @todo OLCS-28149
+     */
+    public function createDelegatorWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName, $callback)
+    {
+        return $this($serviceLocator, $requestedName, $callback);
     }
 }
