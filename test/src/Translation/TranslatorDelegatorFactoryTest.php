@@ -23,7 +23,49 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
  */
 class TranslatorDelegatorFactoryTest extends MockeryTestCase
 {
-    public function testCreatedDelegatorWithName()
+    public function testInvoke()
+    {
+        $loaderClass = 'loader class';
+
+        $config = [
+            'translator' => [
+                'remote_translation' => [
+                    0 => [
+                        'type' => $loaderClass,
+                    ],
+                ],
+            ],
+        ];
+
+        $sm = m::mock(ServiceLocatorInterface::class);
+        $sm->shouldReceive('get')->with('Config')->andReturn($config);
+
+        $requestedName = 'foo';
+        $replacements = ['replacements'];
+
+        $translationLoader = m::mock(RemoteLoaderInterface::class);
+        $translationLoader->expects('loadReplacements')->withNoArgs()->andReturn($replacements);
+
+        $loaderPluginManager = m::mock(LoaderPluginManager::class);
+        $loaderPluginManager->expects('get')->with($loaderClass)->andReturn($translationLoader);
+
+        $realTranslator = m::mock(Translator::class);
+        $realTranslator->expects('getPluginManager')->withNoArgs()->andReturn($loaderPluginManager);
+
+        $callback = function () use ($realTranslator) {
+            return $realTranslator;
+        };
+
+        $sut = new TranslatorDelegatorFactory();
+        $return = $sut($sm, $requestedName, $callback);
+
+        $this->assertInstanceOf(TranslatorDelegator::class, $return);
+    }
+
+    /**
+     * @todo OLCS-28149
+     */
+    public function testCreateDelegatorWithName()
     {
         $loaderClass = 'loader class';
 
