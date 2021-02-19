@@ -58,7 +58,7 @@ class MissingTranslationProcessorTest extends TestCase
         $events = m::mock(EventManagerInterface::class);
         $events->shouldReceive('attach')
             ->once()
-            ->with(Translator::EVENT_MISSING_TRANSLATION, [$this->sut, 'processEvent']);
+            ->with(Translator::EVENT_MISSING_TRANSLATION, [$this->sut, 'processEvent'], 1);
 
         $this->sut->attach($events);
     }

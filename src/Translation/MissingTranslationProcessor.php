@@ -62,15 +62,11 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     }
 
     /**
-     * Attach to event manager
-     *
-     * @param EventManagerInterface $events Event manager
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function attach(EventManagerInterface $events)
+    public function attach(EventManagerInterface $events, $priority = 1)
     {
-        $events->attach(Translator::EVENT_MISSING_TRANSLATION, [$this, 'processEvent']);
+        $events->attach(Translator::EVENT_MISSING_TRANSLATION, [$this, 'processEvent'], $priority);
     }
 
     /**
