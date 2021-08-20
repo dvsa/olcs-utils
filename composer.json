@@ -23,7 +23,6 @@
         "laminas/laminas-servicemanager": "^2.5",
         "laminas/laminas-uri": "^2.5",
         "laminas/laminas-view": "^2.5",
-        "elendev/nexus-composer-push": "^0.1",
         "laminas/laminas-dependency-plugin": "^2.0"
     },
     "require-dev": {
@@ -45,8 +44,7 @@
         "cs": "vendor/bin/phpcs --severity=1 --standard=vendor/olcs/coding-standards/Profiles/DVSA/CS/ruleset.xml",
         "coverage": "vendor/bin/phpunit -c test/phpunit.xml --coverage-html ./test/coverage/html",
         "sonar": "vendor/bin/phpunit -c test/phpunit.xml --coverage-clover ./test/coverage/coverage-report.clover --log-junit ./test/coverage/log.junit",
-        "update-syms": "vendor/bin/composer-update-syms",
-        "release": "release"
+        "update-syms": "vendor/bin/composer-update-syms"
     },
     "extra": {
         "nexus-push": {
