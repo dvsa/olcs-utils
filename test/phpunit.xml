@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="Bootstrap.php" colors="true">
-    <testsuites>
-        <testsuite name="OLCS Utils">
-            <directory>./</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../src</directory>
-            <exclude>
-                <file>../src/Module.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
-    <listeners>
-        <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
-            <arguments>
-                <array>
-                    <element key="slowThreshold">
-                        <integer>250</integer>
-                    </element>
-                    <element key="reportLength">
-                        <integer>5</integer>
-                    </element>
-                </array>
-            </arguments>
-        </listener>
-    </listeners>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="Bootstrap.php" colors="true" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">../src</directory>
+    </include>
+    <exclude>
+      <file>../src/Module.php</file>
+    </exclude>
+  </coverage>
+  <testsuites>
+    <testsuite name="OLCS Utils">
+      <directory>./</directory>
+    </testsuite>
+  </testsuites>
+  <listeners>
+    <listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
+      <arguments>
+        <array>
+          <element key="slowThreshold">
+            <integer>250</integer>
+          </element>
+          <element key="reportLength">
+            <integer>5</integer>
+          </element>
+        </array>
+      </arguments>
+    </listener>
+  </listeners>
 </phpunit>
