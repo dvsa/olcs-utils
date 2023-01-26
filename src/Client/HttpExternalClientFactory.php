@@ -2,8 +2,10 @@
 
 namespace Dvsa\Olcs\Utils\Client;
 
+use http\Client;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Interop\Container\ContainerInterface;
 
 /**
  * Class HttpProxyClientFactory
@@ -25,20 +27,30 @@ class HttpExternalClientFactory implements FactoryInterface
      *
      * @return \Laminas\Http\Client
      */
-    public function createService(ServiceLocatorInterface $sl)
+    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null)
+    {
+        return $this($serviceLocator, Client::class);
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @param $requestedName
+     * @param array|null $options
+     * @return \Laminas\Http\Client
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $client = new \Laminas\Http\Client();
-
-        $config = $sl->get('config');
+        $config = $container->get('config');
         if (!empty($config[self::CONFIG_KEY])) {
             $client->setOptions($config[self::CONFIG_KEY]);
         }
-
         $wrapper = new \Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper();
         $wrapper->wrapAdapter($client);
         // Disable logging reponse data by default
         $wrapper->setShouldLogData(false);
-
         return $client;
     }
 }
