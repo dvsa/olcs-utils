@@ -16,6 +16,7 @@ use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
+use Interop\Container\ContainerInterface;
 
 /**
  * Missing Translation Processor
@@ -48,17 +49,9 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      *
      * @return $this
      */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null): MissingTranslationProcessor
     {
-        $this->renderer = $serviceLocator->get('ViewRenderer');
-
-        if ($serviceLocator->get('ViewHelperManager')->has('getPlaceholder')) {
-            $this->placeholder = $serviceLocator->get('ViewHelperManager')->get('getPlaceholder');
-        }
-
-        $this->resolver = $serviceLocator->get('Laminas\View\Resolver\TemplatePathStack');
-
-        return $this;
+        return $this($serviceLocator, MissingTranslationProcessor::class);
     }
 
     /**
@@ -144,5 +137,23 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         }
 
         return $message;
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @param $requestedName
+     * @param array|null $options
+     * @return $this
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): MissingTranslationProcessor
+    {
+        $this->renderer = $container->get('ViewRenderer');
+        if ($container->get('ViewHelperManager')->has('getPlaceholder')) {
+            $this->placeholder = $container->get('ViewHelperManager')->get('getPlaceholder');
+        }
+        $this->resolver = $container->get('Laminas\View\Resolver\TemplatePathStack');
+        return $this;
     }
 }

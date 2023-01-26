@@ -11,6 +11,7 @@ use Dvsa\Olcs\Utils\Helper\ValueHelper;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\I18n\Translator\Translator;
+use Interop\Container\ContainerInterface;
 
 /**
  * Ni Text Translation
@@ -24,11 +25,9 @@ class NiTextTranslation implements FactoryInterface
      */
     private $translator;
 
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null): NiTextTranslation
     {
-        $this->translator = $serviceLocator->get('translator');
-
-        return $this;
+        return $this($serviceLocator, NiTextTranslation::class);
     }
 
     public function setLocaleForNiFlag($niFlag)
@@ -39,5 +38,19 @@ class NiTextTranslation implements FactoryInterface
 
         $this->translator->setFallbackLocale($this->translator->getLocale());
         $this->translator->setLocale(str_replace('GB', 'NI', $this->translator->getLocale()));
+    }
+
+    /**
+     * @param ContainerInterface $container
+     * @param $requestedName
+     * @param array|null $options
+     * @return $this
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): NiTextTranslation
+    {
+        $this->translator = $container->get('translator');
+        return $this;
     }
 }
