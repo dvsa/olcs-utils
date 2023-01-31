@@ -16,14 +16,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "laminas/laminas-eventmanager": "^2.5",
-        "laminas/laminas-http": "^2.5",
-        "laminas/laminas-i18n": "^2.5",
-        "laminas/laminas-log": "^2.5",
-        "laminas/laminas-servicemanager": "^2.5",
-        "laminas/laminas-uri": "^2.5",
-        "laminas/laminas-view": "^2.5",
-        "laminas/laminas-dependency-plugin": "^2.0"
+        "olcs/olcs-laminas": "~2.5.0 || ~3.0.0"
     },
     "require-dev": {
         "olcs/olcs-devtools": "~4.206.0",
