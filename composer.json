@@ -26,6 +26,7 @@
         "preferred-install": "dist",
         "secure-http": false,
         "allow-plugins": {
+            "laminas/laminas-component-installer": true,
             "laminas/laminas-dependency-plugin": true,
             "phpstan/extension-installer": true,
             "elendev/composer-push": true
