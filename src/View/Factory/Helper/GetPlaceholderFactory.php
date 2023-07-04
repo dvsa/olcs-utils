@@ -16,7 +16,7 @@ class GetPlaceholderFactory implements FactoryInterface
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
         $placeholder = $container->get('placeholder');
-        return function($name) use ($placeholder) {
+        return function ($name) use ($placeholder) {
             return new GetPlaceholder($placeholder->__invoke($name));
         };
     }
