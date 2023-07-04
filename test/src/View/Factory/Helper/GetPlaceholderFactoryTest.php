@@ -4,15 +4,14 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\View\Helper\Placeholder;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 /**
  * Get Placeholder Factory Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
  */
 class GetPlaceholderFactoryTest extends MockeryTestCase
 {
@@ -40,11 +39,16 @@ class GetPlaceholderFactoryTest extends MockeryTestCase
             ->with('foo')
             ->andReturn(m::mock());
 
-        $invoke = $this->sut;
-        $getPlaceholder = $invoke('foo');
-        static::assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
+        /** @var ContainerInterface|m\MockInterface $container */
+        $container = m::mock(ContainerInterface::class);
+        $container->shouldReceive('get')->with('placeholder')->andReturn($this->mockPlaceholder);
 
-        $getPlaceholder2 = $invoke('foo');
-        static::assertSame($getPlaceholder, $getPlaceholder2);
+        $factory = $this->sut;
+        $result = $factory($container, 'getPlaceholder');
+
+        static::assertInstanceOf(\Closure::class, $result);
+
+        $getPlaceholder = $result('foo');
+        static::assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
     }
 }

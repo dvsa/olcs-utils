@@ -3,6 +3,7 @@
 namespace Dvsa\OlcsTest\Utils\Service\Translator;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
+use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
 use Mockery as m;
@@ -40,13 +41,17 @@ class MissingTranslationProcessorTest extends TestCase
 
         $this->mockRenderer = m::mock('Laminas\View\Renderer\RendererInterface');
         $this->mockResolver = m::mock('Laminas\View\Resolver\ResolverInterface');
-        $this->getPlaceholder = m::mock(GetPlaceholderFactory::class);
+        $this->getPlaceholder = m::mock(GetPlaceholder::class);
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);
         $sm->setService('Laminas\View\Resolver\TemplatePathStack', $this->mockResolver);
         $sm->setService('ViewHelperManager', $sm);
-        $sm->setService('getPlaceholder', $this->getPlaceholder);
+
+        // Update 'getPlaceholder' service to return a closure that creates the GetPlaceholder
+        $sm->setService('getPlaceholder', function() {
+            return $this->getPlaceholder;
+        });
 
         $this->sut = new Sut();
         $this->sut->createService($sm);
@@ -191,10 +196,7 @@ class MissingTranslationProcessorTest extends TestCase
             )
             ->getMock();
 
-        $placeholder = m::mock();
-        $placeholder->shouldReceive('asString')->once()->andReturn('foo-placeholder');
-
-        $this->getPlaceholder->shouldReceive('__invoke')->once()->with('FOO')->andReturn($placeholder);
+        $this->getPlaceholder->shouldReceive('asString')->once()->andReturn('foo-placeholder');
 
         $this->mockResolver->shouldReceive('resolve')
             ->once()
