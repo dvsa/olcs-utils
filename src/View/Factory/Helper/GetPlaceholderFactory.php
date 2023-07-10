@@ -3,36 +3,27 @@
 namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
+use Interop\Container\ContainerInterface;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
-use Laminas\View\Helper\AbstractHelper;
 
 /**
- * Get Placeholder
- *
- * @author Rob Caiger <rob@clocal.co.uk>
+ * Get Placeholder Factory
  */
-class GetPlaceholderFactory extends AbstractHelper implements FactoryInterface
+class GetPlaceholderFactory implements FactoryInterface
 {
-    private $placeholder;
-
-    private $containers = [];
-
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    // For Laminas 3.x
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $this->placeholder = $serviceLocator->get('placeholder');
-
-        return $this;
+        $placeholder = $container->get('placeholder');
+        return function ($name) use ($placeholder) {
+            return new GetPlaceholder($placeholder->__invoke($name));
+        };
     }
 
-    public function __invoke($name)
+    // For Laminas 2.5
+    public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $placeholder = $this->placeholder;
-
-        if (!isset($this->containers[$name])) {
-            $this->containers[$name] = new GetPlaceholder($placeholder($name));
-        }
-
-        return $this->containers[$name];
+        return $this($serviceLocator, 'placeholder');
     }
 }
