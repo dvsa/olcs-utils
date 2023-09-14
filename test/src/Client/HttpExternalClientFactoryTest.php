@@ -2,6 +2,11 @@
 
 namespace Dvsa\OlcsTest\Utils\Client;
 
+use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
+use Interop\Container\ContainerInterface;
+use Laminas\Http\Client;
+use Laminas\Http\Client\Adapter\Curl;
+use Laminas\Http\Client\Adapter\Socket;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
@@ -15,28 +20,28 @@ class HttpExternalClientFactoryTest extends MockeryTestCase
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
+        $mockSl = m::mock(ContainerInterface::class);
         $mockSl->shouldReceive('get')->with('config')->once()->andReturn([]);
 
-        $object = $sut->createService($mockSl);
+        $object = $sut->__invoke($mockSl, Client::class);
 
-        $this->assertInstanceOf(\Laminas\Http\Client::class, $object);
-        $this->assertInstanceOf(\Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper::class, $object->getAdapter());
-        $this->assertInstanceOf(\Laminas\Http\Client\Adapter\Socket::class, $object->getAdapter()->getAdapter());
+        $this->assertInstanceOf(Client::class, $object);
+        $this->assertInstanceOf(ClientAdapterLoggingWrapper::class, $object->getAdapter());
+        $this->assertInstanceOf(Socket::class, $object->getAdapter()->getAdapter());
     }
 
     public function testFactoryConfig()
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(\Laminas\ServiceManager\ServiceLocatorInterface::class);
+        $mockSl = m::mock(ContainerInterface::class);
         $mockSl->shouldReceive('get')->with('config')->once()
-            ->andReturn(['http_external' => ['adapter' => \Laminas\Http\Client\Adapter\Curl::class]]);
+            ->andReturn(['http_external' => ['adapter' => Curl::class]]);
 
-        $object = $sut->createService($mockSl);
+        $object = $sut->__invoke($mockSl, Client::class);
 
-        $this->assertInstanceOf(\Laminas\Http\Client::class, $object);
-        $this->assertInstanceOf(\Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper::class, $object->getAdapter());
-        $this->assertInstanceOf(\Laminas\Http\Client\Adapter\Curl::class, $object->getAdapter()->getAdapter());
+        $this->assertInstanceOf(Client::class, $object);
+        $this->assertInstanceOf(ClientAdapterLoggingWrapper::class, $object->getAdapter());
+        $this->assertInstanceOf(Curl::class, $object->getAdapter()->getAdapter());
     }
 }

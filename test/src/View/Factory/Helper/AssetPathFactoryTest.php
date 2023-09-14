@@ -4,10 +4,9 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory;
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
+use Interop\Container\ContainerInterface;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Laminas\ServiceManager\ServiceLocatorInterface;
-use Laminas\ServiceManager\ServiceManager;
 
 /**
  * @covers Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory
@@ -16,20 +15,14 @@ class AssetPathFactoryTest extends MockeryTestCase
 {
     public function test()
     {
-        $mockSl = m::mock(ServiceLocatorInterface::class)
+        $container = m::mock(ContainerInterface::class)
             ->shouldReceive('get')
             ->with('Config')->andReturn(['unit_Config'])
             ->getMock();
 
-        /** @var ServiceManager $mockSm */
-        $mockSm = m::mock(ServiceManager::class)
-            ->shouldReceive('getServiceLocator')
-            ->andReturn($mockSl)
-            ->getMock();
-
         static::assertInstanceOf(
             AssetPath::class,
-            (new AssetPathFactory())->createService($mockSm)
+            (new AssetPathFactory())->__invoke($container, AssetPath::class)
         );
     }
 }

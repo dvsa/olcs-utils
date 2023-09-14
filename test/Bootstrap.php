@@ -2,6 +2,7 @@
 
 namespace Dvsa\OlcsTest\Utils;
 
+use Laminas\ServiceManager\ServiceManager;
 use Mockery as m;
 
 error_reporting(-1);
@@ -46,9 +47,16 @@ class Bootstrap
      */
     public static function getServiceManager()
     {
-        $sm = m::mock('\Laminas\ServiceManager\ServiceManager')
-            ->makePartial()
-            ->setAllowOverride(true);
+        $sm = m::mock(ServiceManager::class);
+
+        $sm->shouldReceive('setService')
+            ->andReturnUsing(
+                function ($alias, $service) use ($sm) {
+                    $sm->shouldReceive('get')->with($alias)->andReturn($service);
+                    $sm->shouldReceive('has')->with($alias)->andReturn(true);
+                    return $sm;
+                }
+            );
 
         return $sm;
     }

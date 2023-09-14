@@ -1,28 +1,17 @@
 <?php
 
-/**
- * Missing Translation Processor
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\I18n\Translator\Translator;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Interop\Container\ContainerInterface;
 
-/**
- * Missing Translation Processor
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 class MissingTranslationProcessor implements FactoryInterface, ListenerAggregateInterface
 {
     use ListenerAggregateTrait;
@@ -41,18 +30,6 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      * @var GetPlaceholderFactory
      */
     protected $placeholder;
-
-    /**
-     * Factory
-     *
-     * @param ServiceLocatorInterface $serviceLocator ServiceLocator
-     *
-     * @return $this
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null): MissingTranslationProcessor
-    {
-        return $this($serviceLocator, MissingTranslationProcessor::class);
-    }
 
     /**
      * {@inheritdoc}
