@@ -2,8 +2,11 @@
 
 return [
     'service_manager' => [
-        'factories' => [
+        'aliases' => [
             'Utils\NiTextTranslation' => \Dvsa\Olcs\Utils\Translation\NiTextTranslation::class,
+        ],
+        'factories' => [
+            \Dvsa\Olcs\Utils\Translation\NiTextTranslation::class => \Dvsa\Olcs\Utils\Translation\NiTextTranslation::class,
             'Utils\MissingTranslationProcessor' => \Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor::class,
             \Dvsa\Olcs\Utils\Client\HttpExternalClientFactory::class =>
                 \Dvsa\Olcs\Utils\Client\HttpExternalClientFactory::class,
