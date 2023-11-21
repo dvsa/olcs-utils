@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\NiTextTranslation;

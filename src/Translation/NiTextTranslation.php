@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;

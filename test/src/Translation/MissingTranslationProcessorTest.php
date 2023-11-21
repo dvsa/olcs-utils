@@ -48,7 +48,7 @@ class MissingTranslationProcessorTest extends TestCase
         $sm->setService('ViewHelperManager', $sm);
 
         // Update 'getPlaceholder' service to return a closure that creates the GetPlaceholder
-        $sm->setService('getPlaceholder', function() {
+        $sm->setService('getPlaceholder', function () {
             return $this->getPlaceholder;
         });
 

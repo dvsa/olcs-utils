@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace OlcsTest\Utils\Helper;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
@@ -16,7 +17,6 @@ use Dvsa\Olcs\Utils\Helper\ValueHelper;
  */
 class ValueHelperTest extends \PHPUnit\Framework\TestCase
 {
-
     /**
      * @dataProvider isOnProvider
      */

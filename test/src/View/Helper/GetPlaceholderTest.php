@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace OlcsTest\Utils\View\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;

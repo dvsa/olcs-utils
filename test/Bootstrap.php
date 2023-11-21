@@ -4,10 +4,6 @@ namespace OlcsTest\Utils;
 
 use Mockery as m;
 
-error_reporting(-1);
-chdir(dirname(__DIR__));
-date_default_timezone_set('Europe/London');
-
 /**
  * Test bootstrap, for setting up autoloading
  */
@@ -49,11 +45,4 @@ class Bootstrap
 
         return $sm;
     }
-
-    protected static function initAutoloader()
-    {
-        return require('vendor/autoload.php');
-    }
 }
-
-Bootstrap::init();

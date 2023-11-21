@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Laminas\I18n\Translator\TranslatorInterface;

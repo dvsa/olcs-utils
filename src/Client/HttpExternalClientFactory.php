@@ -2,7 +2,7 @@
 
 namespace Dvsa\Olcs\Utils\Client;
 
-use http\Client;
+use Laminas\Http\Client;
 use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Interop\Container\ContainerInterface;
@@ -18,14 +18,14 @@ use Interop\Container\ContainerInterface;
  */
 class HttpExternalClientFactory implements FactoryInterface
 {
-    const CONFIG_KEY = 'http_external';
+    public const CONFIG_KEY = 'http_external';
 
     /**
      * Factory
      *
      * @param ServiceLocatorInterface $sl Service manager
      *
-     * @return \Laminas\Http\Client
+     * @return Client
      */
     public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null)
     {
@@ -36,18 +36,18 @@ class HttpExternalClientFactory implements FactoryInterface
      * @param ContainerInterface $container
      * @param $requestedName
      * @param array|null $options
-     * @return \Laminas\Http\Client
+     * @return Client
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $client = new \Laminas\Http\Client();
+        $client = new Client();
         $config = $container->get('config');
         if (!empty($config[self::CONFIG_KEY])) {
             $client->setOptions($config[self::CONFIG_KEY]);
         }
-        $wrapper = new \Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper();
+        $wrapper = new ClientAdapterLoggingWrapper();
         $wrapper->wrapAdapter($client);
         // Disable logging reponse data by default
         $wrapper->setShouldLogData(false);

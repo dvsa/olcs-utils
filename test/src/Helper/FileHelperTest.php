@@ -19,19 +19,19 @@ class FileHelperTest extends \PHPUnit\Framework\TestCase
     {
         return [
             [
-                'path'=> 'dir/dir/aaa.bbb.ext',
+                'path' => 'dir/dir/aaa.bbb.ext',
                 'expect' => 'ext',
             ],
             [
-                'path'=> 'dir/dir/.ext',
+                'path' => 'dir/dir/.ext',
                 'expect' => 'ext',
             ],
             [
-                'path'=> 'dir/dir/file_without_ext',
+                'path' => 'dir/dir/file_without_ext',
                 'expect' => '',
             ],
             [
-                'path'=> null,
+                'path' => null,
                 'expect' => '',
             ],
         ];
