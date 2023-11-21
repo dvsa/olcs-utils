@@ -1,7 +1,8 @@
 <?php
 
-namespace OlcsTest\Utils;
+namespace Dvsa\OlcsTest\Utils;
 
+use Laminas\ServiceManager\ServiceManager;
 use Mockery as m;
 
 /**
@@ -39,9 +40,7 @@ class Bootstrap
      */
     public static function getServiceManager()
     {
-        $sm = m::mock('\Laminas\ServiceManager\ServiceManager')
-            ->makePartial()
-            ->setAllowOverride(true);
+        $sm = m::mock(ServiceManager::class)->makePartial();
 
         return $sm;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace OlcsTest\Utils\Client;
+namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
 use Mockery as m;

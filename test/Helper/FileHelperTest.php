@@ -1,6 +1,6 @@
 <?php
 
-namespace OlcsTest\Utils\Helper;
+namespace Dvsa\OlcsTest\Utils\Helper;
 
 use Dvsa\Olcs\Utils\Helper\FileHelper;
 

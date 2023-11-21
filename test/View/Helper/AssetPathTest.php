@@ -1,6 +1,6 @@
 <?php
 
-namespace OlcsTest\Utils\View\Helper;
+namespace Dvsa\OlcsTest\Utils\View\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
 use Mockery as m;

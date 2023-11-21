@@ -17,7 +17,6 @@ use Laminas\ServiceManager\FactoryInterface;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
-use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Interop\Container\ContainerInterface;
 
 /**

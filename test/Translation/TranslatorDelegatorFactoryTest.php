@@ -6,7 +6,7 @@
  * @author Rob Caiger <rob@clocal.co.uk>
  */
 
-namespace OlcsTest\Utils\Translation;
+namespace Dvsa\Dvsa\OlcsTest\Utils\src\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory;

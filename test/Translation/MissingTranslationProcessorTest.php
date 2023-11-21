@@ -1,6 +1,6 @@
 <?php
 
-namespace OlcsTest\Utils\Service\Translator;
+namespace Dvsa\OlcsTest\Utils\Service\Translator;
 
 use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
@@ -8,7 +8,7 @@ use Laminas\EventManager\EventManagerInterface;
 use Laminas\I18n\Translator\Translator;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
-use OlcsTest\Utils\Bootstrap;
+use Dvsa\OlcsTest\Utils\Bootstrap;
 
 /**
  * Class MissingTranslationProcessorTest

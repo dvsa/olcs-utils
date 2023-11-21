@@ -6,7 +6,7 @@
  * @author Rob Caiger <rob@clocal.co.uk>
  */
 
-namespace OlcsTest\Utils\Translation;
+namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
 use Laminas\Mvc\I18n\Translator;

@@ -6,7 +6,7 @@
  * @author Rob Caiger <rob@clocal.co.uk>
  */
 
-namespace OlcsTest\Utils\Helper;
+namespace Dvsa\OlcsTest\Utils\Helper;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
 

@@ -6,13 +6,13 @@
  * @author Rob Caiger <rob@clocal.co.uk>
  */
 
-namespace OlcsTest\Utils\Translation;
+namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\NiTextTranslation;
 use Laminas\I18n\Translator\Translator;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use OlcsTest\Utils\Bootstrap;
+use Dvsa\OlcsTest\Utils\Bootstrap;
 
 /**
  * Ni Text Translation Test
