@@ -1,6 +1,6 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils\Helper;
+namespace OlcsTest\Utils\Helper;
 
 use Dvsa\Olcs\Utils\Helper\DateTimeHelper;
 use Mockery\Adapter\Phpunit\MockeryTestCase;

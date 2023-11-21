@@ -1,6 +1,6 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils;
+namespace OlcsTest\Utils;
 
 use Mockery as m;
 
@@ -18,9 +18,6 @@ class Bootstrap
     public static function init()
     {
         ini_set('memory_limit', '1G');
-        // Setup the autoloader
-        $loader = static::initAutoloader();
-        $loader->addPsr4('Dvsa\\OlcsTest\\Utils\\', __DIR__ . '/src');
 
         // Grab the application config
         $config = array(

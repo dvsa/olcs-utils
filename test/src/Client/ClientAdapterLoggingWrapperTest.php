@@ -1,14 +1,14 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils\Client;
+namespace OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Olcs\Logging\Log\Logger;
 use Laminas\Http\Client;
 use Laminas\Http\Client\Adapter\AdapterInterface;
 use Laminas\Log\Writer\Mock;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Olcs\Logging\Log\Logger;
 
 /**
  * @covers  Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper

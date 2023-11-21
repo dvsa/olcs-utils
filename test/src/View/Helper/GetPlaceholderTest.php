@@ -5,12 +5,12 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-namespace Dvsa\OlcsTest\Utils\View\Helper;
+namespace OlcsTest\Utils\View\Helper;
 
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Laminas\View\Model\ViewModel;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 /**
  * Get Placeholder Test

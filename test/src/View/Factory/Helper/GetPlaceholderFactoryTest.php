@@ -1,6 +1,6 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
+namespace OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
