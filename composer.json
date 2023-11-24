@@ -23,12 +23,14 @@
       }
     },
     "require-dev": {
-        "olcs/olcs-logging": "dev-add-workflows",
+        "olcs/olcs-logging": "^5.0.0",
         "phpunit/phpunit": "^9.6",
         "mockery/mockery": "^1.6",
         "johnkary/phpunit-speedtrap": "^4.0",
         "bamarni/composer-bin-plugin": "^1.8"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "bamarni/composer-bin-plugin": true,
