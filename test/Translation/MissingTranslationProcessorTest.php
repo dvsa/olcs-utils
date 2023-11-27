@@ -2,14 +2,13 @@
 
 namespace Dvsa\OlcsTest\Utils\Service\Translator;
 
-use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
+use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Dvsa\OlcsTest\Utils\Bootstrap;
-use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
-use Mockery as m;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\I18n\Translator\Translator;
-use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
+use Dvsa\OlcsTest\Utils\Bootstrap;
 
 /**
  * Class MissingTranslationProcessorTest
@@ -49,7 +48,7 @@ class MissingTranslationProcessorTest extends TestCase
         $sm->setService('ViewHelperManager', $sm);
 
         // Update 'getPlaceholder' service to return a closure that creates the GetPlaceholder
-        $sm->setService('getPlaceholder', function() {
+        $sm->setService('getPlaceholder', function () {
             return $this->getPlaceholder;
         });
 

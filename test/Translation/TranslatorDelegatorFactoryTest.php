@@ -5,16 +5,17 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
-namespace Dvsa\OlcsTest\Utils\Translation;
+
+namespace Dvsa\Dvsa\OlcsTest\Utils\src\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Laminas\I18n\Translator\Loader\RemoteLoaderInterface;
 use Laminas\I18n\Translator\LoaderPluginManager;
 use Laminas\Mvc\I18n\Translator;
 use Laminas\ServiceManager\ServiceLocatorInterface;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 /**
  * Translator Delegator Factory Test

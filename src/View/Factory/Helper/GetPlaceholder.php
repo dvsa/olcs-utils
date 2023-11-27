@@ -1,10 +1,9 @@
 <?php
 
-namespace Dvsa\Olcs\Utils\View\Helper;
+namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Laminas\View\Helper\AbstractHelper;
 use Laminas\View\Helper\HelperInterface;
-
 
 class GetPlaceholder extends AbstractHelper implements HelperInterface
 {

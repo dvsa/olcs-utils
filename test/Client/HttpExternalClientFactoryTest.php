@@ -2,9 +2,9 @@
 
 namespace Dvsa\OlcsTest\Utils\Client;
 
+use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
 
 /**
  * HttpExternalClientFactoryTest

@@ -181,7 +181,6 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
     {
         Logger::debug('Close Connection:' . $this->host . ':' . $this->port);
         $this->host = null;
-        $this->post = null;
 
         $this->getAdapter()->close();
     }

@@ -5,12 +5,13 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
+use Laminas\Mvc\I18n\Translator;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Laminas\Mvc\I18n\Translator;
 
 /**
  * Translator Delegator Test

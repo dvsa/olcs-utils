@@ -4,10 +4,10 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory;
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Laminas\ServiceManager\ServiceManager;
+use Mockery as m;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
 /**
  * @covers Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory
