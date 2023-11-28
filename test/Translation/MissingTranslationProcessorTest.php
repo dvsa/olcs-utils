@@ -1,6 +1,6 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils\Service\Translator;
+namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
@@ -48,7 +48,7 @@ class MissingTranslationProcessorTest extends TestCase
             return $this->getPlaceholder;
         });
 
-        $this->sut = new Sut();
+        $this->sut = new MissingTranslationProcessor();
         $this->sut->__invoke($sm, MissingTranslationProcessor::class);
     }
 
