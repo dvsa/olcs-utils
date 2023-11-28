@@ -2,6 +2,7 @@
 
 namespace Dvsa\Olcs\Utils\Translation;
 
+use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholder;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\EventManager\ListenerAggregateTrait;
@@ -9,7 +10,6 @@ use Laminas\I18n\Translator\Translator;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
-use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Interop\Container\ContainerInterface;
 
 class MissingTranslationProcessor implements FactoryInterface, ListenerAggregateInterface
@@ -27,7 +27,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     protected $resolver;
 
     /**
-     * @var GetPlaceholderFactory
+     * @var GetPlaceholder
      */
     protected $placeholder;
 
@@ -44,7 +44,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      *
      * @param \Laminas\EventManager\Event $e Event
      *
-     * @return string
+     * @return string|void
      */
     public function processEvent(\Laminas\EventManager\Event $e)
     {

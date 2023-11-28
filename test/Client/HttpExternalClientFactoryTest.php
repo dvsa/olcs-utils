@@ -9,7 +9,6 @@ use Laminas\Http\Client\Adapter\Curl;
 use Laminas\Http\Client\Adapter\Socket;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
 
 /**
  * HttpExternalClientFactoryTest

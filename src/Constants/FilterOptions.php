@@ -7,7 +7,7 @@ namespace Dvsa\Olcs\Utils\Constants;
  */
 class FilterOptions
 {
-    const SHOW_ALL = 'tsw_all';
-    const SHOW_SELF_ONLY = 'tsw_self_only';
-    const EXCLUDE_IRHP = 'tsw_exclude_irhp';
+    public const SHOW_ALL = 'tsw_all';
+    public const SHOW_SELF_ONLY = 'tsw_self_only';
+    public const EXCLUDE_IRHP = 'tsw_exclude_irhp';
 }

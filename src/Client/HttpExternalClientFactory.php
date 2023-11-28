@@ -16,24 +16,24 @@ use Interop\Container\ContainerInterface;
  */
 class HttpExternalClientFactory implements FactoryInterface
 {
-    const CONFIG_KEY = 'http_external';
+    public const CONFIG_KEY = 'http_external';
 
     /**
      * @param ContainerInterface $container
      * @param $requestedName
      * @param array|null $options
-     * @return \Laminas\Http\Client
+     * @return Client
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
     {
-        $client = new \Laminas\Http\Client();
+        $client = new Client();
         $config = $container->get('config');
         if (!empty($config[self::CONFIG_KEY])) {
             $client->setOptions($config[self::CONFIG_KEY]);
         }
-        $wrapper = new \Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper();
+        $wrapper = new ClientAdapterLoggingWrapper();
         $wrapper->wrapAdapter($client);
         // Disable logging reponse data by default
         $wrapper->setShouldLogData(false);

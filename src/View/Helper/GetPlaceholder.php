@@ -5,6 +5,7 @@
  *
  * @author Rob Caiger <rob@clocal.co.uk>
  */
+
 namespace Dvsa\Olcs\Utils\View\Helper;
 
 use Laminas\View\Model\ViewModel;

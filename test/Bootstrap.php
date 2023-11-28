@@ -5,10 +5,6 @@ namespace Dvsa\OlcsTest\Utils;
 use Laminas\ServiceManager\ServiceManager;
 use Mockery as m;
 
-error_reporting(-1);
-chdir(dirname(__DIR__));
-date_default_timezone_set('Europe/London');
-
 /**
  * Test bootstrap, for setting up autoloading
  */
@@ -19,9 +15,6 @@ class Bootstrap
     public static function init()
     {
         ini_set('memory_limit', '1G');
-        // Setup the autoloader
-        $loader = static::initAutoloader();
-        $loader->addPsr4('Dvsa\\OlcsTest\\Utils\\', __DIR__ . '/src');
 
         // Grab the application config
         $config = array(
@@ -60,11 +53,4 @@ class Bootstrap
 
         return $sm;
     }
-
-    protected static function initAutoloader()
-    {
-        return require('vendor/autoload.php');
-    }
 }
-
-Bootstrap::init();
