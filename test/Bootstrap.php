@@ -40,7 +40,16 @@ class Bootstrap
      */
     public static function getServiceManager()
     {
-        $sm = m::mock(ServiceManager::class)->makePartial();
+        $sm = m::mock(ServiceManager::class);
+
+        $sm->shouldReceive('setService')
+            ->andReturnUsing(
+                function ($alias, $service) use ($sm) {
+                    $sm->shouldReceive('get')->with($alias)->andReturn($service);
+                    $sm->shouldReceive('has')->with($alias)->andReturn(true);
+                    return $sm;
+                }
+            );
 
         return $sm;
     }

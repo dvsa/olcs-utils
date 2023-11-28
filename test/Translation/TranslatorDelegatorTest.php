@@ -1,23 +1,12 @@
 <?php
 
-/**
- * Translator Delegator Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-
 namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
-use Laminas\Mvc\I18n\Translator;
+use Laminas\I18n\Translator\TranslatorInterface;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-/**
- * Translator Delegator Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 class TranslatorDelegatorTest extends MockeryTestCase
 {
     protected $sut;
@@ -25,7 +14,7 @@ class TranslatorDelegatorTest extends MockeryTestCase
 
     public function setUp(): void
     {
-        $this->mockTranslator = m::mock(Translator::class);
+        $this->mockTranslator = m::mock(TranslatorInterface::class);
         $this->mockTranslator->shouldReceive('translate')
             ->andReturnUsing(
                 function ($message, $textDomain, $locale) {

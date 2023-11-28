@@ -3,8 +3,7 @@
 namespace Dvsa\Olcs\Utils\Client;
 
 use Laminas\Http\Client;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Interop\Container\ContainerInterface;
 
 /**
@@ -19,18 +18,6 @@ use Interop\Container\ContainerInterface;
 class HttpExternalClientFactory implements FactoryInterface
 {
     public const CONFIG_KEY = 'http_external';
-
-    /**
-     * Factory
-     *
-     * @param ServiceLocatorInterface $sl Service manager
-     *
-     * @return Client
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null)
-    {
-        return $this($serviceLocator, Client::class);
-    }
 
     /**
      * @param ContainerInterface $container

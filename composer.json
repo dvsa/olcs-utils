@@ -4,13 +4,14 @@
     "require": {
         "php": "^7.4",
         "laminas/laminas-view": "^2.11",
-        "laminas/laminas-servicemanager": "^2.7",
+        "laminas/laminas-servicemanager": "^3.0",
         "laminas/laminas-i18n": "^2.14",
-        "laminas/laminas-eventmanager": "^2.6",
+        "laminas/laminas-eventmanager": "^3.0",
         "laminas/laminas-http": "^2.8",
         "container-interop/container-interop": "^1.2",
-        "laminas/laminas-mvc": "^2.7",
-        "psr/container": "^1.1|^2.0"
+        "laminas/laminas-mvc": "^3.3",
+        "psr/container": "^1.1|^2.0",
+        "laminas/laminas-mvc-i18n": "^1.4"
     },
     "autoload": {
       "psr-4": {

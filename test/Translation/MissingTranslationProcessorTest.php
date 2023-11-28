@@ -1,8 +1,8 @@
 <?php
 
-namespace Dvsa\OlcsTest\Utils\Service\Translator;
+namespace Dvsa\OlcsTest\Utils\Translation;
 
-use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor as Sut;
+use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\I18n\Translator\Translator;
@@ -10,10 +10,6 @@ use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase as TestCase;
 use Dvsa\OlcsTest\Utils\Bootstrap;
 
-/**
- * Class MissingTranslationProcessorTest
- * @package CommonTest\Service\Translator
- */
 class MissingTranslationProcessorTest extends TestCase
 {
     /**
@@ -52,8 +48,8 @@ class MissingTranslationProcessorTest extends TestCase
             return $this->getPlaceholder;
         });
 
-        $this->sut = new Sut();
-        $this->sut->createService($sm);
+        $this->sut = new MissingTranslationProcessor();
+        $this->sut->__invoke($sm, MissingTranslationProcessor::class);
     }
 
     public function testAttach()
