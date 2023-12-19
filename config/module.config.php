@@ -14,6 +14,9 @@ return [
         'delegators' => [
             'MvcTranslator' => [
                 \Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory::class,
+            ],
+            \Laminas\Mvc\I18n\Translator::class => [
+                \Dvsa\Olcs\Utils\Translation\TranslatorDelegatorFactory::class,
             ]
         ],
         'shared' => [
