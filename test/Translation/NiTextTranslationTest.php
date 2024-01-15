@@ -40,7 +40,7 @@ class NiTextTranslationTest extends MockeryTestCase
         $sm->setService('translator', $this->translator);
 
         $this->sut = new NiTextTranslation();
-        $this->sut->createService($sm);
+        $this->sut->__invoke($sm, NiTextTranslation::class);
     }
 
     /**
