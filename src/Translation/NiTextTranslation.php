@@ -1,37 +1,20 @@
 <?php
 
-/**
- * Ni Text Translation
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
-use Laminas\ServiceManager\FactoryInterface;
-use Laminas\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\I18n\Translator\Translator;
 use Interop\Container\ContainerInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
-/**
- * Ni Text Translation
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 class NiTextTranslation implements FactoryInterface
 {
     /**
      * @var Translator
      */
     private $translator;
-
-    public function createService(ServiceLocatorInterface $serviceLocator, $name = null, $requestedName = null): NiTextTranslation
-    {
-        return $this($serviceLocator, NiTextTranslation::class);
-    }
 
     public function setLocaleForNiFlag($niFlag)
     {
