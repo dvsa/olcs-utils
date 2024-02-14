@@ -14,14 +14,14 @@
         "laminas/laminas-mvc-i18n": "^1.4"
     },
     "autoload": {
-      "psr-4": {
-        "Dvsa\\Olcs\\Utils\\": "src/"
-      }
+        "psr-4": {
+            "Dvsa\\Olcs\\Utils\\": "src/"
+        }
     },
     "autoload-dev": {
-      "psr-4": {
-        "Dvsa\\OlcsTest\\Utils\\": "test/"
-      }
+        "psr-4": {
+            "Dvsa\\OlcsTest\\Utils\\": "test/"
+        }
     },
     "require-dev": {
         "olcs/olcs-logging": "^5.0.0",
@@ -54,10 +54,10 @@
             "@phpstan"
         ]
     },
-    "extra" : {
-      "bamarni-bin": {
-        "bin-links": true,
-        "forward-command": true
-      }
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": true
+        }
     }
 }
