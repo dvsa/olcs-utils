@@ -4,7 +4,7 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\AssetPathFactory;
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Mockery as m;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
 

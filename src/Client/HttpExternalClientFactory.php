@@ -4,7 +4,7 @@ namespace Dvsa\Olcs\Utils\Client;
 
 use Laminas\Http\Client;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Class HttpProxyClientFactory

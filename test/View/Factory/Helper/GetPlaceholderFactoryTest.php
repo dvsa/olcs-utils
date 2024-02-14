@@ -4,7 +4,7 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\View\Helper\Placeholder;
 use Laminas\View\HelperPluginManager;
 use Mockery as m;

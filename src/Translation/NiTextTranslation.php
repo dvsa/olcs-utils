@@ -5,7 +5,7 @@ namespace Dvsa\Olcs\Utils\Translation;
 use Dvsa\Olcs\Utils\Helper\ValueHelper;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\I18n\Translator\Translator;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
