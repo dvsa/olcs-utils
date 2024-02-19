@@ -10,7 +10,7 @@ use Laminas\I18n\Translator\Translator;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class MissingTranslationProcessor implements FactoryInterface, ListenerAggregateInterface
 {

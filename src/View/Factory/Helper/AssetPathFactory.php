@@ -4,7 +4,7 @@ namespace Dvsa\Olcs\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
 use Laminas\ServiceManager\Factory\FactoryInterface;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 
 /**
  * Factory for @see Dvsa\Olcs\Snapshot\View\Helper\AssetPath

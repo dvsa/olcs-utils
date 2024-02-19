@@ -4,7 +4,7 @@ namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
 use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\Http\Client;
 use Laminas\Http\Client\Adapter\Curl;
 use Laminas\Http\Client\Adapter\Socket;

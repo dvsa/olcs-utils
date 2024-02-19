@@ -2,7 +2,7 @@
 
 namespace Dvsa\Olcs\Utils\Translation;
 
-use Interop\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Laminas\I18n\Translator\Loader\RemoteLoaderInterface;
 use Laminas\I18n\Translator\Translator;
 use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
