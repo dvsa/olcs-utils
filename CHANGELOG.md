@@ -1,5 +1,21 @@
 # Changelog
 
+## [6.0.0](https://github.com/dvsa/olcs-utils/compare/v5.0.0...v6.0.0) (2024-02-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* interop/container no longer supported
+
+### Features
+
+* VOL-3691 switch to Psr Container ([#9](https://github.com/dvsa/olcs-utils/issues/9)) ([47a58c0](https://github.com/dvsa/olcs-utils/commit/47a58c0f2b9394a043c0eea0f2f871875afb2d26))
+
+
+### Miscellaneous Chores
+
+* bump `olcs-logging` to `^6.0` ([#11](https://github.com/dvsa/olcs-utils/issues/11)) ([d5bad7a](https://github.com/dvsa/olcs-utils/commit/d5bad7ab1fd0c555359583c27255bbe3b49ae558))
+
 ## [5.0.0](https://github.com/dvsa/olcs-utils/compare/v5.0.0...v5.0.0) (2024-02-14)
 
 
