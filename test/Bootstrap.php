@@ -10,23 +10,14 @@ use Mockery as m;
  */
 class Bootstrap
 {
-    protected static $config = array();
+    protected static $config = [];
 
     public static function init()
     {
         ini_set('memory_limit', '1G');
 
         // Grab the application config
-        $config = array(
-            'modules' => array(
-                'Dvsa\Olcs\Utils'
-            ),
-            'module_listener_options' => array(
-                'module_paths' => array(
-                    __DIR__ . '/../'
-                )
-            )
-        );
+        $config = ['modules' => ['Dvsa\Olcs\Utils'], 'module_listener_options' => ['module_paths' => [__DIR__ . '/../']]];
 
         self::$config = $config;
 

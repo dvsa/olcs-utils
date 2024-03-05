@@ -34,19 +34,17 @@ class MissingTranslationProcessorTest extends TestCase
     {
         parent::setUp();
 
-        $this->mockRenderer = m::mock('Laminas\View\Renderer\RendererInterface');
-        $this->mockResolver = m::mock('Laminas\View\Resolver\ResolverInterface');
+        $this->mockRenderer = m::mock(\Laminas\View\Renderer\RendererInterface::class);
+        $this->mockResolver = m::mock(\Laminas\View\Resolver\ResolverInterface::class);
         $this->getPlaceholder = m::mock(GetPlaceholder::class);
 
         $sm = Bootstrap::getServiceManager();
         $sm->setService('ViewRenderer', $this->mockRenderer);
-        $sm->setService('Laminas\View\Resolver\TemplatePathStack', $this->mockResolver);
+        $sm->setService(\Laminas\View\Resolver\TemplatePathStack::class, $this->mockResolver);
         $sm->setService('ViewHelperManager', $sm);
 
         // Update 'getPlaceholder' service to return a closure that creates the GetPlaceholder
-        $sm->setService('getPlaceholder', function () {
-            return $this->getPlaceholder;
-        });
+        $sm->setService('getPlaceholder', fn() => $this->getPlaceholder);
 
         $this->sut = new MissingTranslationProcessor();
         $this->sut->__invoke($sm, MissingTranslationProcessor::class);
@@ -130,7 +128,7 @@ class MissingTranslationProcessorTest extends TestCase
         /**
          * @var \Laminas\I18n\Translator\TranslatorInterface
          */
-        $translator = m::mock('Laminas\I18n\Translator\TranslatorInterface')
+        $translator = m::mock(\Laminas\I18n\Translator\TranslatorInterface::class)
             ->shouldReceive('translate')
             ->with('nested.translation.key')
             ->andReturn('translated substring')

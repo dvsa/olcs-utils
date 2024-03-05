@@ -17,9 +17,7 @@ class TranslatorDelegatorTest extends MockeryTestCase
         $this->mockTranslator = m::mock(TranslatorInterface::class);
         $this->mockTranslator->shouldReceive('translate')
             ->andReturnUsing(
-                function ($message, $textDomain, $locale) {
-                    return 'translated-' . $message;
-                }
+                fn($message, $textDomain, $locale) => 'translated-' . $message
             );
 
         $translations = [

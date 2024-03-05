@@ -42,9 +42,7 @@ class TranslatorDelegatorFactoryTest extends MockeryTestCase
         $realTranslator = m::mock(TranslatorInterface::class);
         $realTranslator->expects('getPluginManager')->withNoArgs()->andReturn($loaderPluginManager);
 
-        $callback = function () use ($realTranslator) {
-            return $realTranslator;
-        };
+        $callback = fn() => $realTranslator;
 
         $sut = new TranslatorDelegatorFactory();
         $return = $sut($sm, $requestedName, $callback);

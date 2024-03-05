@@ -17,8 +17,6 @@ class GetPlaceholderFactory implements FactoryInterface
         $viewHelperManager = $container->get('ViewHelperManager');
         $placeholder = $viewHelperManager->get('placeholder');
 
-        return function ($name) use ($placeholder) {
-            return new GetPlaceholder($placeholder->__invoke($name));
-        };
+        return fn($name) => new GetPlaceholder($placeholder->__invoke($name));
     }
 }

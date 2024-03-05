@@ -130,7 +130,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         if ($container->get('ViewHelperManager')->has('getPlaceholder')) {
             $this->placeholder = $container->get('ViewHelperManager')->get('getPlaceholder');
         }
-        $this->resolver = $container->get('Laminas\View\Resolver\TemplatePathStack');
+        $this->resolver = $container->get(\Laminas\View\Resolver\TemplatePathStack::class);
         return $this;
     }
 }

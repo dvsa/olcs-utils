@@ -102,7 +102,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return AdapterInterface
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         return $this->getAdapter()->setOptions($options);
     }
@@ -136,7 +136,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return string
      */
-    public function write($method, $url, $httpVer = '1.1', $headers = array(), $body = '')
+    public function write($method, $url, $httpVer = '1.1', $headers = [], $body = '')
     {
         $data = [
             'data' => [
