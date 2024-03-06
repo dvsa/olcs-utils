@@ -56,7 +56,7 @@ class TranslatorDelegator extends Translator
     /**
      * Translate a message
      *
-     * @param string $message    Message to be translated
+     * @param string|null $message    Message to be translated
      * @param string $textDomain Domain for translations
      * @param string $locale     Locale to be translated to
      *
@@ -64,7 +64,7 @@ class TranslatorDelegator extends Translator
      */
     public function translate($message, $textDomain = 'default', $locale = null)
     {
-        if ($message === null) {
+        if (empty($message)) {
             return '';
         }
 

@@ -1,24 +1,13 @@
 <?php
 
-/**
- * Get Placeholder Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-
 namespace Dvsa\OlcsTest\Utils\View\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
+use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\Model\ViewModel;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Get Placeholder Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-class GetPlaceholderTest extends MockeryTestCase
+class GetPlaceholderTest extends TestCase
 {
     protected $container;
 
@@ -26,9 +15,7 @@ class GetPlaceholderTest extends MockeryTestCase
 
     public function setUp(): void
     {
-        $this->container = m::mock();
-
-        $this->sut = new GetPlaceholder($this->container);
+        $this->container = $this->getMockBuilder(\stdClass::class)->addMethods(['getValue'])->getMock();
     }
 
     /**
@@ -36,9 +23,9 @@ class GetPlaceholderTest extends MockeryTestCase
      */
     public function testAsString($value, $expected)
     {
-        $this->container->shouldReceive('getValue')->andReturn($value);
+        $this->container->method('getValue')->willReturn($value);
 
-        $this->assertEquals($expected, $this->sut->asString());
+        $this->assertEquals($expected, $this->getService()->asString());
     }
 
     /**
@@ -46,9 +33,9 @@ class GetPlaceholderTest extends MockeryTestCase
      */
     public function testAsView($value, $expected)
     {
-        $this->container->shouldReceive('getValue')->andReturn($value);
+        $this->container->method('getValue')->willReturn($value);
 
-        $this->assertEquals($expected, $this->sut->asView());
+        $this->assertEquals($expected, $this->getService()->asView());
     }
 
     /**
@@ -56,9 +43,9 @@ class GetPlaceholderTest extends MockeryTestCase
      */
     public function testAsObject($value, $expected)
     {
-        $this->container->shouldReceive('getValue')->andReturn($value);
+        $this->container->method('getValue')->willReturn($value);
 
-        $this->assertEquals($expected, $this->sut->asObject());
+        $this->assertEquals($expected, $this->getService()->asObject());
     }
 
     /**
@@ -66,9 +53,9 @@ class GetPlaceholderTest extends MockeryTestCase
      */
     public function testAsBool($value, $expected)
     {
-        $this->container->shouldReceive('getValue')->andReturn($value);
+        $this->container->method('getValue')->willReturn($value);
 
-        $this->assertEquals($expected, $this->sut->asBool());
+        $this->assertEquals($expected, $this->getService()->asBool());
     }
 
     public function asStringProvider()
@@ -165,5 +152,10 @@ class GetPlaceholderTest extends MockeryTestCase
                 null
             ]
         ];
+    }
+
+    protected function getService(): GetPlaceholder
+    {
+        return new GetPlaceholder($this->container);
     }
 }

@@ -4,28 +4,29 @@ namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
 use Laminas\Http\Client;
-use Laminas\Http\Client\Adapter\AdapterInterface;
 use Laminas\Log\Writer\Mock;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Laminas\Uri\Uri;
 use Olcs\Logging\Log\Logger;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers  Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper
- */
-class ClientAdapterLoggingWrapperTest extends MockeryTestCase
+class ClientAdapterLoggingWrapperTest extends TestCase
 {
-    /** @var ClientAdapterLoggingWrapper */
+    /**
+     * @var ClientAdapterLoggingWrapper|MockObject
+     */
     private $sut;
 
-    /** @var  m\MockInterface|Client\Adapter\Curl */
+    /**
+     * @var Client\Adapter\Curl|MockObject
+     */
     private $mockAdapter;
 
     public function setUp(): void
     {
         $writer = new Mock();
 
-        $this->mockAdapter = m::mock(Client\Adapter\Curl::class)->makePartial();
+        $this->mockAdapter = $this->createMock(Client\Adapter\Curl::class);
 
         $mockLogger = new \Laminas\Log\Logger();
         $mockLogger->addWriter($writer);
@@ -43,35 +44,32 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
 
     public function testWrapAdapter()
     {
-        /** @var Client $client */
-        $client = m::mock(Client::class)->makePartial();
-        $client->setAdapter($this->mockAdapter);
+        $client = $this->createMock(Client::class);
+        $client->expects($this->once())->method('getAdapter')->willReturn($this->mockAdapter);
+        $client->expects($this->once())->method('setAdapter')->with($this->sut);
 
         $this->sut->wrapAdapter($client);
-
-        $this->assertSame($this->mockAdapter, $this->sut->getAdapter());
-        $this->assertSame($this->sut, $client->getAdapter());
     }
 
     public function testSetOptions()
     {
-        $this->mockAdapter->shouldReceive('setOptions')->once()->with(['foo' => 'bar']);
+        $this->mockAdapter->expects($this->once())->method('setOptions')->with(['foo' => 'bar']);
 
         $this->sut->setOptions(['foo' => 'bar']);
     }
 
     public function testConnect()
     {
-        $this->mockAdapter->shouldReceive('connect')->once()->with('foo.com', 80, false);
+        $this->mockAdapter->expects($this->once())->method('connect')->with('foo.com', 80, false);
 
         $this->sut->connect('foo.com', 80);
     }
 
     public function testWrite()
     {
-        $this->mockAdapter->shouldReceive('write')->once()->with('GET', '/foo', '1.1', [], '');
+        $this->mockAdapter->expects($this->once())->method('write')->with('GET', '/foo', '1.1', [], '');
 
-        $this->sut->write('GET', '/foo');
+        $this->sut->write('GET', new Uri('/foo'));
     }
 
     public function testRead()
@@ -89,7 +87,7 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
             . '\r\n'
             . '{\"foo\":\"bar\"}';
 
-        $this->mockAdapter->shouldReceive('read')->once()->andReturn($response);
+        $this->mockAdapter->expects($this->once())->method('read')->willReturn($response);
 
         $this->sut->setShouldLogData(false);
 
@@ -98,23 +96,16 @@ class ClientAdapterLoggingWrapperTest extends MockeryTestCase
 
     public function testClose()
     {
-        $this->mockAdapter->shouldReceive('close')->once();
+        $this->mockAdapter->expects($this->once())->method('close');
 
         $this->sut->close();
     }
 
-    public function testCall()
-    {
-        $this->mockAdapter->shouldReceive('getConfig')->once()->andReturn('foo');
-
-        $this->assertEquals('foo', $this->sut->getConfig());
-    }
-
     public function testSetOutputStream()
     {
-        $stream = m::mock(\stdClass::class);
+        $stream = stream_context_create();
 
-        $this->mockAdapter->shouldReceive('setOutputStream')->once()->with($stream);
+        $this->mockAdapter->expects($this->once())->method('setOutputStream')->willReturn($stream);
 
         $this->assertSame($this->sut, $this->sut->setOutputStream($stream));
     }

@@ -3,13 +3,9 @@
 namespace Dvsa\OlcsTest\Utils\View\Helper;
 
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers Dvsa\Olcs\Utils\View\Helper\AssetPath
- */
-class AssetPathTest extends MockeryTestCase
+class AssetPathTest extends TestCase
 {
     public function test()
     {

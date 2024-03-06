@@ -1,25 +1,14 @@
 <?php
 
-/**
- * Ni Text Translation Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-
 namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\NiTextTranslation;
 use Laminas\I18n\Translator\Translator;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
-use Dvsa\OlcsTest\Utils\Bootstrap;
+use Laminas\ServiceManager\ServiceManager;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-/**
- * Ni Text Translation Test
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
-class NiTextTranslationTest extends MockeryTestCase
+class NiTextTranslationTest extends TestCase
 {
     /**
      * @var NiTextTranslation
@@ -27,20 +16,14 @@ class NiTextTranslationTest extends MockeryTestCase
     protected $sut;
 
     /**
-     * @var Translator
+     * @var Translator|MockObject
      */
     protected $translator;
 
     public function setUp(): void
     {
-        $this->translator = m::mock(Translator::class)->makePartial();
-        $this->translator->setLocale('en_GB');
-
-        $sm = Bootstrap::getServiceManager();
-        $sm->setService('translator', $this->translator);
-
-        $this->sut = new NiTextTranslation();
-        $this->sut->__invoke($sm, NiTextTranslation::class);
+        $this->translator = $this->createMock(Translator::class);
+        $this->translator->method('getLocale')->willReturn('en_GB');
     }
 
     /**
@@ -48,10 +31,10 @@ class NiTextTranslationTest extends MockeryTestCase
      */
     public function testSetLocaleForNiFlag($niFlag, $expected, $expectedFallback)
     {
-        $this->sut->setLocaleForNiFlag($niFlag);
+        $this->translator->expects($niFlag === 'N' ? $this->never() : $this->once())->method('setLocale')->with($expected);
+        $this->translator->expects($niFlag === 'N' ? $this->never() : $this->once())->method('setFallbackLocale')->with($expectedFallback);
 
-        $this->assertEquals($expected, $this->translator->getLocale());
-        $this->assertEquals($expectedFallback, $this->translator->getFallbackLocale());
+        $this->getService()->setLocaleForNiFlag($niFlag);
     }
 
     public function niFlagProvider()
@@ -68,5 +51,20 @@ class NiTextTranslationTest extends MockeryTestCase
                 'en_GB'
             ]
         ];
+    }
+
+    protected function getService(): NiTextTranslation
+    {
+        $serviceManager = $this->createMock(ServiceManager::class);
+        $serviceManager->method('get')->willReturnMap([
+            ['translator', $this->translator]
+        ]);
+
+        $serviceManager->method('has')->with('getPlaceholder')->willReturn(true);
+
+        $niTextTranslation = new NiTextTranslation();
+        $niTextTranslation->__invoke($serviceManager, NiTextTranslation::class);
+
+        return $niTextTranslation;
     }
 }
