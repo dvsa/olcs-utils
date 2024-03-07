@@ -3,23 +3,30 @@
 namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\TranslatorDelegator;
-use Laminas\I18n\Translator\TranslatorInterface;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use Laminas\I18n\Translator\Translator;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class TranslatorDelegatorTest extends MockeryTestCase
+class TranslatorDelegatorTest extends TestCase
 {
+    /**
+     * @var TranslatorDelegator
+     */
     protected $sut;
+
+    /**
+     * @var Translator|MockObject
+     */
     protected $mockTranslator;
 
     public function setUp(): void
     {
-        $this->mockTranslator = m::mock(TranslatorInterface::class);
-        $this->mockTranslator->shouldReceive('translate')
-            ->andReturnUsing(
-                function ($message, $textDomain, $locale) {
-                    return 'translated-' . $message;
-                }
+        $this->mockTranslator = $this->createMock(Translator::class);
+
+        $this->mockTranslator
+            ->method('translate')
+            ->willReturnCallback(
+                fn($message, $textDomain, $locale) => 'translated-' . $message
             );
 
         $translations = [
@@ -45,8 +52,9 @@ class TranslatorDelegatorTest extends MockeryTestCase
 
     public function testCall()
     {
-        $this->mockTranslator->shouldReceive('setLocale')->once();
+        $this->mockTranslator->expects($this->once())->method('setLocale');
 
-        $this->sut->setLocale();
+        // @phpstan-ignore-next-line `setLocale` is forwarded using `__call` to the wrapped translator.
+        $this->sut->setLocale('en_GB');
     }
 }

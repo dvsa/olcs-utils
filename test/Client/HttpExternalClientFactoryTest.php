@@ -4,24 +4,20 @@ namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
 use Dvsa\Olcs\Utils\Client\HttpExternalClientFactory;
+use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Laminas\Http\Client;
 use Laminas\Http\Client\Adapter\Curl;
 use Laminas\Http\Client\Adapter\Socket;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-/**
- * HttpExternalClientFactoryTest
- */
-class HttpExternalClientFactoryTest extends MockeryTestCase
+class HttpExternalClientFactoryTest extends TestCase
 {
     public function testFactoryNoConfig()
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(ContainerInterface::class);
-        $mockSl->shouldReceive('get')->with('config')->once()->andReturn([]);
+        $mockSl = $this->createMock(ContainerInterface::class);
+        $mockSl->expects($this->once())->method('get')->with('config')->willReturn([]);
 
         $object = $sut->__invoke($mockSl, Client::class);
 
@@ -34,9 +30,12 @@ class HttpExternalClientFactoryTest extends MockeryTestCase
     {
         $sut = new HttpExternalClientFactory();
 
-        $mockSl = m::mock(ContainerInterface::class);
-        $mockSl->shouldReceive('get')->with('config')->once()
-            ->andReturn(['http_external' => ['adapter' => Curl::class]]);
+        $mockSl = $this->createMock(ContainerInterface::class);
+        $mockSl
+            ->expects($this->once())
+            ->method('get')
+            ->with('config')
+            ->willReturn(['http_external' => ['adapter' => Curl::class]]);
 
         $object = $sut->__invoke($mockSl, Client::class);
 

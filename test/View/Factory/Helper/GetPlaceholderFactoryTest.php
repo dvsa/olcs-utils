@@ -4,44 +4,41 @@ namespace Dvsa\OlcsTest\Utils\View\Factory\Helper;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholderFactory;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Psr\Container\ContainerInterface;
 use Laminas\View\Helper\Placeholder;
 use Laminas\View\HelperPluginManager;
-use Mockery as m;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class GetPlaceholderFactoryTest extends MockeryTestCase
+class GetPlaceholderFactoryTest extends TestCase
 {
     protected $sut;
 
-    /** @var  m\MockInterface */
+    /**
+     * @var Placeholder|MockObject
+     */
     protected $mockPlaceholder;
 
     public function setUp(): void
     {
         $this->sut = new GetPlaceholderFactory();
-        $this->mockPlaceholder = m::mock(Placeholder::class);
+        $this->mockPlaceholder = $this->createMock(Placeholder::class);
     }
 
     public function testInvoke(): void
     {
-        $this->mockPlaceholder->shouldReceive('__invoke')
-            ->with('foo')
-            ->andReturn(m::mock());
+        $viewHelperManager = $this->createMock(HelperPluginManager::class);
+        $viewHelperManager->method('get')->with('placeholder')->willReturn($this->mockPlaceholder);
 
-        $viewHelperManager = m::mock(HelperPluginManager::class);
-        $viewHelperManager->expects('get')->with('placeholder')->andReturn($this->mockPlaceholder);
-
-        /** @var ContainerInterface|m\MockInterface $container */
-        $container = m::mock(ContainerInterface::class);
-        $container->expects('get')->with('ViewHelperManager')->andReturn($viewHelperManager);
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('get')->with('ViewHelperManager')->willReturn($viewHelperManager);
 
         $factory = $this->sut;
         $result = $factory($container, 'getPlaceholder');
 
-        static::assertInstanceOf(\Closure::class, $result);
+        $this->assertInstanceOf(\Closure::class, $result);
 
         $getPlaceholder = $result('foo');
-        static::assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
+        $this->assertInstanceOf(GetPlaceholder::class, $getPlaceholder);
     }
 }

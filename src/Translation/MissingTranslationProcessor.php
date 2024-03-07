@@ -3,14 +3,18 @@
 namespace Dvsa\Olcs\Utils\Translation;
 
 use Dvsa\Olcs\Utils\View\Factory\Helper\GetPlaceholder;
+use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManagerInterface;
 use Laminas\EventManager\ListenerAggregateInterface;
 use Laminas\EventManager\ListenerAggregateTrait;
 use Laminas\I18n\Translator\Translator;
+use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 use Laminas\View\Renderer\RendererInterface as Renderer;
 use Laminas\View\Resolver\ResolverInterface as Resolver;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class MissingTranslationProcessor implements FactoryInterface, ListenerAggregateInterface
 {
@@ -40,20 +44,29 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     }
 
     /**
-     * Process an event
-     *
-     * @param \Laminas\EventManager\Event $e Event
-     *
      * @return string|void
      */
-    public function processEvent(\Laminas\EventManager\Event $e)
+    public function processEvent(Event $e)
     {
         $translator = $e->getTarget();
+
+        if (!$translator instanceof TranslatorInterface) {
+            return;
+        }
+
         $params = $e->getParams();
 
         $message = $params['message'];
 
-        if (preg_match_all('/\{([^\}]+)\}/', $message, $matches)) {
+        if (empty($message)) {
+            return;
+        }
+
+        if (!is_string($message)) {
+            return;
+        }
+
+        if (preg_match_all('/\{([^}]+)}/', $message, $matches)) {
             // handles text with translation keys inside curly braces {}
             foreach ($matches[0] as $key => $match) {
                 $message = str_replace($match, $translator->translate($matches[1][$key]), $message);
@@ -90,20 +103,13 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
         // needs to return void so that the event is propagated to other listeners
     }
 
-    /**
-     * Populate a placeholder
-     *
-     * @param string $message Message
-     *
-     * @return mixed
-     */
-    protected function populatePlaceholder($message)
+    protected function populatePlaceholder(string $message): string
     {
         if ($this->placeholder === null) {
             return $message;
         }
 
-        if (preg_match_all('/\{\{PLACEHOLDER\:([a-zA-Z\_0-9]+)\}\}/', $message, $matches)) {
+        if (preg_match_all('/\{\{PLACEHOLDER:([a-zA-Z_0-9]+)}}/', $message, $matches)) {
             $placeholderHelper = $this->placeholder;
 
             foreach ($matches[0] as $index => $match) {
@@ -121,16 +127,17 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      * @param $requestedName
      * @param array|null $options
      * @return $this
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
      */
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): MissingTranslationProcessor
     {
         $this->renderer = $container->get('ViewRenderer');
+
         if ($container->get('ViewHelperManager')->has('getPlaceholder')) {
             $this->placeholder = $container->get('ViewHelperManager')->get('getPlaceholder');
         }
-        $this->resolver = $container->get('Laminas\View\Resolver\TemplatePathStack');
+        $this->resolver = $container->get(\Laminas\View\Resolver\TemplatePathStack::class);
         return $this;
     }
 }

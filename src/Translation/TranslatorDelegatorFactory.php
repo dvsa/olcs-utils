@@ -20,7 +20,6 @@ class TranslatorDelegatorFactory implements DelegatorFactoryInterface
         $config = $container->get('Config');
 
         //use the same remote translation loader to load replacements
-        /** @var RemoteLoaderInterface $translationLoader */
         $loaderClass = $config['translator']['remote_translation'][0]['type'];
         $translationLoader = $realTranslator->getPluginManager()->get($loaderClass);
         $replacements = $translationLoader->loadReplacements();

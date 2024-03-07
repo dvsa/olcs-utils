@@ -3,12 +3,9 @@
 namespace Dvsa\OlcsTest\Utils\Helper;
 
 use Dvsa\Olcs\Utils\Helper\DateTimeHelper;
-use Mockery\Adapter\Phpunit\MockeryTestCase;
+use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Dvsa\Olcs\Utils\Helper\DateTimeHelper
- */
-class DateTimeHelperTest extends MockeryTestCase
+class DateTimeHelperTest extends TestCase
 {
     /** @dataProvider dpTestFormat */
     public function testFormat($date, $format, $expect)

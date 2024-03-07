@@ -6,19 +6,13 @@ use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Psr\Container\ContainerInterface;
 use Laminas\ServiceManager\Factory\FactoryInterface;
 
-/**
- * Get Placeholder Factory
- */
 class GetPlaceholderFactory implements FactoryInterface
 {
-    // For Laminas 3.x
-    public function __invoke(ContainerInterface $container, $requestedName, array $options = null)
+    public function __invoke(ContainerInterface $container, $requestedName, array $options = null): \Closure
     {
         $viewHelperManager = $container->get('ViewHelperManager');
         $placeholder = $viewHelperManager->get('placeholder');
 
-        return function ($name) use ($placeholder) {
-            return new GetPlaceholder($placeholder->__invoke($name));
-        };
+        return fn($name) => new GetPlaceholder($placeholder->__invoke($name));
     }
 }

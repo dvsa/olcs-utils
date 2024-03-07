@@ -4,19 +4,13 @@ namespace Dvsa\Olcs\Utils\Client;
 
 use Olcs\Logging\Log\Logger;
 use Laminas\Http\Client;
-use Laminas\Http\Client\Adapter\AdapterInterface;
 use Laminas\Http\Client\Adapter\AdapterInterface as HttpAdapter;
 use Laminas\Http\Client\Adapter\StreamInterface;
 use Laminas\Http\Response;
 
-/**
- * Client Adapter Logging Wrapper
- *
- * @author Rob Caiger <rob@clocal.co.uk>
- */
 class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
 {
-    /** @var  HttpAdapter|StreamInterface */
+    /** @var HttpAdapter|StreamInterface */
     private $adapter;
 
     private $host;
@@ -100,9 +94,9 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @param array $options Adapter options to set
      *
-     * @return AdapterInterface
+     * @return HttpAdapter
      */
-    public function setOptions($options = array())
+    public function setOptions($options = [])
     {
         return $this->getAdapter()->setOptions($options);
     }
@@ -136,7 +130,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return string
      */
-    public function write($method, $url, $httpVer = '1.1', $headers = array(), $body = '')
+    public function write($method, $url, $httpVer = '1.1', $headers = [], $body = '')
     {
         $data = [
             'data' => [
