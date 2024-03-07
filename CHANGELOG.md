@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/dvsa/olcs-utils/compare/v6.0.0...v6.1.0) (2024-03-07)
+
+
+### Features
+
+* increase static analysis level ([#12](https://github.com/dvsa/olcs-utils/issues/12)) ([8c79e3f](https://github.com/dvsa/olcs-utils/commit/8c79e3f8899f23037304fed19abf1185b661ecb0))
+
 ## [6.0.0](https://github.com/dvsa/olcs-utils/compare/v5.0.0...v6.0.0) (2024-02-20)
 
 
