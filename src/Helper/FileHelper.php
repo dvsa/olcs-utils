@@ -18,6 +18,10 @@ class FileHelper
      */
     public static function getExtension($path)
     {
+        if ($path === null) {
+            return '';
+        }
+
         return substr(strrchr($path, '.'), 1);
     }
 }
