@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/dvsa/olcs-utils/compare/v6.1.0...v6.2.0) (2024-03-26)
+
+
+### Features
+
+* add support for PHP 8.x ([da84e4f](https://github.com/dvsa/olcs-utils/commit/da84e4f0ff54747f26ac373914fd53553339e28b))
+
 ## [6.1.0](https://github.com/dvsa/olcs-utils/compare/v6.0.0...v6.1.0) (2024-03-07)
 
 
