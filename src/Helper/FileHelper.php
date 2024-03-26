@@ -12,12 +12,16 @@ class FileHelper
     /**
      * Get file extention from path
      *
-     * @param string $path Path to file
+     * @param string|null $path Path to file
      *
      * @return string
      */
     public static function getExtension($path)
     {
+        if ($path === null) {
+            return '';
+        }
+
         return substr(strrchr($path, '.'), 1);
     }
 }

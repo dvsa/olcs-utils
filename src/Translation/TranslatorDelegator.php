@@ -19,11 +19,6 @@ use Laminas\Mvc\I18n\Translator;
 class TranslatorDelegator extends Translator
 {
     /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    /**
      * @var array
      */
     private $replacements;
