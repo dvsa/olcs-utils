@@ -21,7 +21,7 @@ class TranslatorDelegator extends Translator
     /**
      * @var TranslatorInterface
      */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     /**
      * @var array
