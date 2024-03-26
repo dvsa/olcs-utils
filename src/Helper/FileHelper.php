@@ -12,7 +12,7 @@ class FileHelper
     /**
      * Get file extention from path
      *
-     * @param string $path Path to file
+     * @param string|null $path Path to file
      *
      * @return string
      */

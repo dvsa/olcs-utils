@@ -34,7 +34,7 @@ class TranslatorDelegator extends Translator
      * @param TranslatorInterface $translator   Transloator
      * @param array               $replacements Array of tokens that can be replaced in translations
      */
-    public function __construct($translator, array $replacements)
+    public function __construct(TranslatorInterface $translator, array $replacements)
     {
         $this->translator = $translator;
         $this->replacements = $replacements;
