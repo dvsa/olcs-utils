@@ -41,7 +41,7 @@ class AssetPath extends AbstractHelper
         $this->cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustStrategy);
         $this->release = $config['version']['release'] ?? null;
         if ($this->cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
-            $this->verifyReleaseVersion();
+            $this->verifyReleaseVersionIsSet();
         }
     }
 
@@ -70,7 +70,7 @@ class AssetPath extends AbstractHelper
      * @param AssetPathCacheBustingStrategy|null $strategy The cache busting strategy to verify, if not provided the default will be used
      * @throws \InvalidArgumentException if the release version is not set when using the Release strategy
      */
-    private function verifyReleaseVersion(AssetPathCacheBustingStrategy $strategy = null): void
+    private function verifyReleaseVersionIsSet(AssetPathCacheBustingStrategy $strategy = null): void
     {
         if ($strategy === null) {
             $strategy = $this->cacheBustingStrategy;
@@ -95,7 +95,7 @@ class AssetPath extends AbstractHelper
         } else {
             $cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustingStrategy);
             if ($cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
-                $this->verifyReleaseVersion($cacheBustingStrategy);
+                $this->verifyReleaseVersionIsSet($cacheBustingStrategy);
             }
         }
 
