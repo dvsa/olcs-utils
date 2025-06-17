@@ -35,6 +35,18 @@ class AssetPathTest extends TestCase
         $this->assertSame('/assets/style.css?v=c47f5b18b8a4', $result);
     }
 
+    public function testCacheBustingStrategyReleaseThrowsWhenNoReleaseConfigured()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_RELEASE,
+            ]
+        ]);
+        $this->expectExceptionMessage('Release version is required for cache busting strategy "release".');
+    }
+
     public function testCacheBustingStrategyUnixTimestamp()
     {
         $helper = new AssetPath([
@@ -56,5 +68,53 @@ class AssetPathTest extends TestCase
                 'cache_busting_strategy' => 'invalid_strategy',
             ]
         ]);
+    }
+
+    public function testAssetPathWithNoPath()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+            ]
+        ]);
+        $result = $helper();
+        $this->assertSame('/assets', $result);
+    }
+
+    public function testAssetPathWithEmptyPath()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+            ]
+        ]);
+        $result = $helper('');
+        $this->assertSame('/assets', $result);
+    }
+
+    public function testAssetPathWithCustomCacheBustingStrategy()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+            ]
+        ]);
+        $result = $helper('script.js', AssetPath::CACHE_BUSTING_STRATEGY_NONE);
+        $this->assertSame('/assets/script.js', $result);
+    }
+
+    public function testAssetPathWithCustomCacheBustingStrategyWithEmptyPath()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+            ]
+        ]);
+        $result = $helper('', AssetPath::CACHE_BUSTING_STRATEGY_NONE);
+        $this->assertSame('/assets', $result);
     }
 }

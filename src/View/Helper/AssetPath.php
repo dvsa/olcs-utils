@@ -42,12 +42,7 @@ class AssetPath extends AbstractHelper
         $this->assetBasePath = $config['assets']['base_url'] ?? '';
         $cacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? self::CACHE_BUSTING_STRATEGY_NONE;
 
-        $this->cacheBustingStrategy = match ($cacheBustStrategy) {
-            self::CACHE_BUSTING_STRATEGY_NONE,
-            self::CACHE_BUSTING_STRATEGY_RELEASE,
-            self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP => $cacheBustStrategy,
-            default => throw new \InvalidArgumentException("Invalid cache busting strategy: {$cacheBustStrategy}"),
-        };
+        $this->cacheBustingStrategy = $this->parseCacheBustingStrategy($cacheBustStrategy);
 
         if ($cacheBustStrategy === self::CACHE_BUSTING_STRATEGY_RELEASE) {
             $this->release = $config['version']['release'] ?? null;
@@ -57,16 +52,32 @@ class AssetPath extends AbstractHelper
         }
     }
 
+    private function parseCacheBustingStrategy(string $cacheBustStrategy): string
+    {
+        return match ($cacheBustStrategy) {
+            self::CACHE_BUSTING_STRATEGY_NONE,
+            self::CACHE_BUSTING_STRATEGY_RELEASE,
+            self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP => $cacheBustStrategy,
+            default => throw new \InvalidArgumentException("Invalid cache busting strategy: {$cacheBustStrategy}"),
+        };
+    }
+
     /**
      * Render asset path with optional cache busting
      *
+     * @param string $path The asset path to append to the base URL
+     * @param string $cacheBustingStrategy The cache busting strategy to use, if not provided the default will be used
      * @return string
      */
-    public function __invoke($path = null)
+    public function __invoke(string $path = '', string $cacheBustingStrategy = null): string
     {
+        if ($cacheBustingStrategy === null) {
+            $cacheBustingStrategy = $this->cacheBustingStrategy;
+        }
+
         $assetUrl = rtrim($this->assetBasePath, '/') . '/' . ltrim($path, '/');
 
-        return match ($this->cacheBustingStrategy) {
+        return match ($cacheBustingStrategy) {
             self::CACHE_BUSTING_STRATEGY_NONE => rtrim($assetUrl, '/'),
             self::CACHE_BUSTING_STRATEGY_RELEASE,
             self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP => $this->appendCacheBustingQuery($assetUrl),
