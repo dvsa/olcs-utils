@@ -7,15 +7,54 @@ use PHPUnit\Framework\TestCase;
 
 class AssetPathTest extends TestCase
 {
-    public function test()
+    public function testCacheBustingStrategyNone()
     {
-        $config = [
-            'asset_path' => '/cfg/path/',
-        ];
-        $path = '////path/to/resource/';
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+            ]
+        ]);
+        $result = $helper('style.css');
+        $this->assertSame('/assets/style.css', $result);
+    }
 
-        $invoke = new AssetPath($config);
+    public function testCacheBustingStrategyRelease()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_RELEASE,
+            ],
+            'version' => [
+                'release' => '1.2.3',
+            ],
+        ]);
 
-        static::assertSame('/cfg/path/path/to/resource/', $invoke($path));
+        $result = $helper('style.css');
+        $this->assertSame('/assets/style.css?v=c47f5b18b8a4', $result);
+    }
+
+    public function testCacheBustingStrategyUnixTimestamp()
+    {
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+            ]
+        ]);
+        $result = $helper('style.css');
+        $this->assertMatchesRegularExpression('/\/assets\/style\.css\?v=\d+/', $result);
+    }
+
+    public function testInvalidCacheBustingStrategyThrows()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => 'invalid_strategy',
+            ]
+        ]);
     }
 }
