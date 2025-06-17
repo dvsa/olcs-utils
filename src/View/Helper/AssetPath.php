@@ -39,12 +39,9 @@ class AssetPath extends AbstractHelper
         $this->assetBasePath = $config['assets']['base_url'] ?? '';
         $cacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? AssetPathCacheBustingStrategy::None;
         $this->cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustStrategy);
-
+        $this->release = $config['version']['release'] ?? null;
         if ($this->cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
-            $this->release = $config['version']['release'] ?? null;
-            if (empty($this->release)) {
-                throw new \InvalidArgumentException('Release version is required for cache busting strategy "release".');
-            }
+            $this->verifyReleaseVersion();
         }
     }
 
@@ -68,6 +65,23 @@ class AssetPath extends AbstractHelper
     }
 
     /**
+     * Verify version.release is set when using Release cache busting strategy
+     *
+     * @param AssetPathCacheBustingStrategy|null $strategy The cache busting strategy to verify, if not provided the default will be used
+     * @throws \InvalidArgumentException if the release version is not set when using the Release strategy
+     */
+    private function verifyReleaseVersion(AssetPathCacheBustingStrategy $strategy = null): void
+    {
+        if ($strategy === null) {
+            $strategy = $this->cacheBustingStrategy;
+        }
+
+        if ($strategy === AssetPathCacheBustingStrategy::Release && empty($this->release)) {
+            throw new \InvalidArgumentException('Release version is required for cache busting strategy "release".');
+        }
+    }
+
+    /**
      * Render asset path with optional cache busting
      *
      * @param string $path The asset path to append to the base URL
@@ -80,6 +94,9 @@ class AssetPath extends AbstractHelper
             $cacheBustingStrategy = $this->cacheBustingStrategy;
         } else {
             $cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustingStrategy);
+            if ($cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
+                $this->verifyReleaseVersion($cacheBustingStrategy);
+            }
         }
 
         $assetUrl = rtrim($this->assetBasePath, '/') . '/' . ltrim($path, '/');

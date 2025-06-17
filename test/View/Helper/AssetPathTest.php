@@ -95,7 +95,7 @@ class AssetPathTest extends TestCase
         $this->assertSame('/assets', $result);
     }
 
-    public function testAssetPathWithCustomCacheBustingStrategy()
+    public function testAssetPathWithOnDemandCacheBustingStrategy()
     {
         $helper = new AssetPath([
             'assets' => [
@@ -107,7 +107,7 @@ class AssetPathTest extends TestCase
         $this->assertSame('/assets/script.js', $result);
     }
 
-    public function testAssetPathWithCustomCacheBustingStrategyWithEmptyPath()
+    public function testAssetPathWithOnDemandCacheBustingStrategyWithEmptyPath()
     {
         $helper = new AssetPath([
             'assets' => [
@@ -117,5 +117,19 @@ class AssetPathTest extends TestCase
         ]);
         $result = $helper('', AssetPathCacheBustingStrategy::None);
         $this->assertSame('/assets', $result);
+    }
+
+    public function testAssetPathWithOnDemandCacheBustingStrategySetAsReleaseVerifiesVersionRelease()
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Release version is required for cache busting strategy "release".');
+
+        $helper = new AssetPath([
+            'assets' => [
+                'base_url' => '/assets/',
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::None,
+            ]
+        ]);
+        $helper('script.js', AssetPathCacheBustingStrategy::Release);
     }
 }
