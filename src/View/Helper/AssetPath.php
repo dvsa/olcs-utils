@@ -37,8 +37,8 @@ class AssetPath extends AbstractHelper
     private function parseConfig(array $config = []): void
     {
         $this->assetBasePath = $config['assets']['base_url'] ?? '';
-        $cacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? AssetPathCacheBustingStrategy::None;
-        $this->cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustStrategy);
+        $configuredCacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? AssetPathCacheBustingStrategy::None;
+        $this->cacheBustingStrategy = $this->normalizeCacheBustingStrategy($configuredCacheBustStrategy);
         $this->release = $config['version']['release'] ?? null;
         if ($this->cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
             $this->verifyReleaseVersionIsSet();
@@ -85,27 +85,39 @@ class AssetPath extends AbstractHelper
      * Render asset path with optional cache busting
      *
      * @param string $path The asset path to append to the base URL
-     * @param string|AssetPathCacheBustingStrategy|null $cacheBustingStrategy The cache busting strategy to use, if not provided the default will be used
+     * @param string|AssetPathCacheBustingStrategy|null $onDemandCacheBustingStrategy The cache busting strategy to use, if not provided the default will be used
      * @return string
      */
-    public function __invoke(string $path = '', string|AssetPathCacheBustingStrategy $cacheBustingStrategy = null): string
+    public function __invoke(string $path = '', string|AssetPathCacheBustingStrategy $onDemandCacheBustingStrategy = null): string
     {
-        if ($cacheBustingStrategy === null) {
-            $cacheBustingStrategy = $this->cacheBustingStrategy;
-        } else {
-            $cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustingStrategy);
-            if ($cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
-                $this->verifyReleaseVersionIsSet($cacheBustingStrategy);
-            }
-        }
+        $strategy = $this->resolveCacheBustingStrategy($onDemandCacheBustingStrategy);
 
         $assetUrl = rtrim($this->assetBasePath, '/') . '/' . ltrim($path, '/');
 
-        return match ($cacheBustingStrategy) {
+        return match ($strategy) {
             AssetPathCacheBustingStrategy::None => rtrim($assetUrl, '/'),
             AssetPathCacheBustingStrategy::Release,
-            AssetPathCacheBustingStrategy::UnixTimestamp => $this->appendCacheBustingQuery($assetUrl, $cacheBustingStrategy),
+            AssetPathCacheBustingStrategy::UnixTimestamp => $this->appendCacheBustingQuery($assetUrl, $strategy),
         };
+    }
+
+    /**
+     * Resolve the cache busting strategy, either from the provided parameter or the default
+     *
+     * @param string|AssetPathCacheBustingStrategy|null $strategy The cache busting strategy to resolve
+     * @return AssetPathCacheBustingStrategy
+     */
+    private function resolveCacheBustingStrategy(string|AssetPathCacheBustingStrategy|null $strategy): AssetPathCacheBustingStrategy
+    {
+        $strategy = $strategy === null
+            ? $this->cacheBustingStrategy
+            : $this->normalizeCacheBustingStrategy($strategy);
+
+        if ($strategy === AssetPathCacheBustingStrategy::Release) {
+            $this->verifyReleaseVersionIsSet($strategy);
+        }
+
+        return $strategy;
     }
 
     /**
