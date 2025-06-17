@@ -2,6 +2,7 @@
 
 namespace Dvsa\Olcs\Utils\View\Helper;
 
+use Dvsa\Olcs\Utils\Enum\AssetPathCacheBustingStrategy;
 use Laminas\View\Helper\AbstractHelper;
 
 /**
@@ -24,12 +25,8 @@ use Laminas\View\Helper\AbstractHelper;
  */
 class AssetPath extends AbstractHelper
 {
-    public const CACHE_BUSTING_STRATEGY_NONE = 'none';
-    public const CACHE_BUSTING_STRATEGY_RELEASE = 'release';
-    public const CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP = 'timestamp';
-
     private string $assetBasePath;
-    private string $cacheBustingStrategy;
+    private AssetPathCacheBustingStrategy $cacheBustingStrategy;
     private ?string $release;
 
     public function __construct(array $config)
@@ -40,11 +37,10 @@ class AssetPath extends AbstractHelper
     private function parseConfig(array $config = []): void
     {
         $this->assetBasePath = $config['assets']['base_url'] ?? '';
-        $cacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? self::CACHE_BUSTING_STRATEGY_NONE;
+        $cacheBustStrategy = $config['assets']['cache_busting_strategy'] ?? AssetPathCacheBustingStrategy::None;
+        $this->cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustStrategy);
 
-        $this->cacheBustingStrategy = $this->parseCacheBustingStrategy($cacheBustStrategy);
-
-        if ($this->cacheBustingStrategy === self::CACHE_BUSTING_STRATEGY_RELEASE) {
+        if ($this->cacheBustingStrategy === AssetPathCacheBustingStrategy::Release) {
             $this->release = $config['version']['release'] ?? null;
             if (empty($this->release)) {
                 throw new \InvalidArgumentException('Release version is required for cache busting strategy "release".');
@@ -52,36 +48,46 @@ class AssetPath extends AbstractHelper
         }
     }
 
-    private function parseCacheBustingStrategy(string $cacheBustStrategy): string
+    /**
+     * Normalize the cache busting strategy to an enum instance
+     *
+     * @param string|AssetPathCacheBustingStrategy $strategy The cache busting strategy to normalize
+     * @return AssetPathCacheBustingStrategy
+     * @throws \InvalidArgumentException if the strategy is not valid
+     */
+    private function normalizeCacheBustingStrategy(string|AssetPathCacheBustingStrategy $strategy): AssetPathCacheBustingStrategy
     {
-        return match ($cacheBustStrategy) {
-            self::CACHE_BUSTING_STRATEGY_NONE,
-            self::CACHE_BUSTING_STRATEGY_RELEASE,
-            self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP => $cacheBustStrategy,
-            default => throw new \InvalidArgumentException("Invalid cache busting strategy: {$cacheBustStrategy}"),
-        };
+        if ($strategy instanceof AssetPathCacheBustingStrategy) {
+            return $strategy;
+        }
+        $enum = AssetPathCacheBustingStrategy::tryFrom($strategy);
+        if ($enum === null) {
+            throw new \InvalidArgumentException("Invalid cache busting strategy: {$strategy}");
+        }
+        return $enum;
     }
 
     /**
      * Render asset path with optional cache busting
      *
      * @param string $path The asset path to append to the base URL
-     * @param string $cacheBustingStrategy The cache busting strategy to use, if not provided the default will be used
+     * @param string|AssetPathCacheBustingStrategy|null $cacheBustingStrategy The cache busting strategy to use, if not provided the default will be used
      * @return string
      */
-    public function __invoke(string $path = '', string $cacheBustingStrategy = null): string
+    public function __invoke(string $path = '', string|AssetPathCacheBustingStrategy $cacheBustingStrategy = null): string
     {
         if ($cacheBustingStrategy === null) {
             $cacheBustingStrategy = $this->cacheBustingStrategy;
+        } else {
+            $cacheBustingStrategy = $this->normalizeCacheBustingStrategy($cacheBustingStrategy);
         }
 
         $assetUrl = rtrim($this->assetBasePath, '/') . '/' . ltrim($path, '/');
 
         return match ($cacheBustingStrategy) {
-            self::CACHE_BUSTING_STRATEGY_NONE => rtrim($assetUrl, '/'),
-            self::CACHE_BUSTING_STRATEGY_RELEASE,
-            self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP => $this->appendCacheBustingQuery($assetUrl),
-            default => throw new \LogicException('Unhandled cache busting strategy'),
+            AssetPathCacheBustingStrategy::None => rtrim($assetUrl, '/'),
+            AssetPathCacheBustingStrategy::Release,
+            AssetPathCacheBustingStrategy::UnixTimestamp => $this->appendCacheBustingQuery($assetUrl, $cacheBustingStrategy),
         };
     }
 
@@ -89,15 +95,16 @@ class AssetPath extends AbstractHelper
      * Append cache busting query to the asset URL
      *
      * @param string $assetUrl The asset URL to append the query to
+     * @param AssetPathCacheBustingStrategy $cacheBustingStrategy The cache busting strategy to use
      * @return string The asset URL with the cache busting query appended
      */
-    private function appendCacheBustingQuery(string $assetUrl): string
+    private function appendCacheBustingQuery(string $assetUrl, AssetPathCacheBustingStrategy $cacheBustingStrategy): string
     {
-        if ($this->cacheBustingStrategy === self::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP) {
-            $versionString = (string) time();
-        } else {
-            $versionString = substr(hash('sha256', $this->release), 0, 12);
-        }
+        $versionString = match ($cacheBustingStrategy) {
+            AssetPathCacheBustingStrategy::UnixTimestamp => (string) time(),
+            AssetPathCacheBustingStrategy::Release => substr(hash('sha256', $this->release), 0, 12),
+            default => throw new \LogicException('Unhandled cache busting strategy'),
+        };
 
         $query = http_build_query(['v' => $versionString]);
         $separator = (parse_url($assetUrl, PHP_URL_QUERY) === null) ? '?' : '&';

@@ -2,6 +2,7 @@
 
 namespace Dvsa\OlcsTest\Utils\View\Helper;
 
+use Dvsa\Olcs\Utils\Enum\AssetPathCacheBustingStrategy;
 use Dvsa\Olcs\Utils\View\Helper\AssetPath;
 use PHPUnit\Framework\TestCase;
 
@@ -12,7 +13,7 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::None,
             ]
         ]);
         $result = $helper('style.css');
@@ -24,7 +25,7 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_RELEASE,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::Release,
             ],
             'version' => [
                 'release' => '1.2.3',
@@ -42,7 +43,7 @@ class AssetPathTest extends TestCase
         new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_RELEASE,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::Release,
             ]
         ]);
     }
@@ -52,7 +53,7 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::UnixTimestamp,
             ]
         ]);
         $result = $helper('style.css');
@@ -75,7 +76,7 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::None,
             ]
         ]);
         $result = $helper();
@@ -87,7 +88,7 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_NONE,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::None,
             ]
         ]);
         $result = $helper('');
@@ -99,10 +100,10 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::UnixTimestamp,
             ]
         ]);
-        $result = $helper('script.js', AssetPath::CACHE_BUSTING_STRATEGY_NONE);
+        $result = $helper('script.js', AssetPathCacheBustingStrategy::None);
         $this->assertSame('/assets/script.js', $result);
     }
 
@@ -111,10 +112,10 @@ class AssetPathTest extends TestCase
         $helper = new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
-                'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_UNIX_TIMESTAMP,
+                'cache_busting_strategy' => AssetPathCacheBustingStrategy::UnixTimestamp,
             ]
         ]);
-        $result = $helper('', AssetPath::CACHE_BUSTING_STRATEGY_NONE);
+        $result = $helper('', AssetPathCacheBustingStrategy::None);
         $this->assertSame('/assets', $result);
     }
 }
