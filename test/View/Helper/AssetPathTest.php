@@ -38,13 +38,13 @@ class AssetPathTest extends TestCase
     public function testCacheBustingStrategyReleaseThrowsWhenNoReleaseConfigured()
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Release version is required for cache busting strategy "release".');
         new AssetPath([
             'assets' => [
                 'base_url' => '/assets/',
                 'cache_busting_strategy' => AssetPath::CACHE_BUSTING_STRATEGY_RELEASE,
             ]
         ]);
-        $this->expectExceptionMessage('Release version is required for cache busting strategy "release".');
     }
 
     public function testCacheBustingStrategyUnixTimestamp()
