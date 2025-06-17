@@ -44,7 +44,7 @@ class AssetPath extends AbstractHelper
 
         $this->cacheBustingStrategy = $this->parseCacheBustingStrategy($cacheBustStrategy);
 
-        if ($cacheBustStrategy === self::CACHE_BUSTING_STRATEGY_RELEASE) {
+        if ($this->cacheBustingStrategy === self::CACHE_BUSTING_STRATEGY_RELEASE) {
             $this->release = $config['version']['release'] ?? null;
             if (empty($this->release)) {
                 throw new \InvalidArgumentException('Release version is required for cache busting strategy "release".');
