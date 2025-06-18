@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.3.0](https://github.com/dvsa/olcs-utils/compare/v6.2.0...v6.3.0) (2025-06-18)
+
+
+### Features
+
+* added cache busting support for AssetPath ViewHelper ([#23](https://github.com/dvsa/olcs-utils/issues/23)) ([8c83f3f](https://github.com/dvsa/olcs-utils/commit/8c83f3f4795bdde6b75a29690148e9c363e2cbd4))
+
 ## [6.2.0](https://github.com/dvsa/olcs-utils/compare/v6.1.0...v6.2.0) (2024-03-26)
 
 
