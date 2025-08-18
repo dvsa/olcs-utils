@@ -38,6 +38,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function attach(EventManagerInterface $events, $priority = 1)
     {
         $events->attach(Translator::EVENT_MISSING_TRANSLATION, [$this, 'processEvent'], $priority);
@@ -130,6 +131,7 @@ class MissingTranslationProcessor implements FactoryInterface, ListenerAggregate
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
+    #[\Override]
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): MissingTranslationProcessor
     {
         $this->renderer = $container->get('ViewRenderer');
