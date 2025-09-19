@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/dvsa/olcs-utils/compare/v6.3.0...v7.0.0) (2025-09-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* update composer and ci to PHP 8.2/8.3, bump deps, fix static analysis ([#25](https://github.com/dvsa/olcs-utils/issues/25))
+
+### Miscellaneous Chores
+
+* update composer and ci to PHP 8.2/8.3, bump deps, fix static analysis ([#25](https://github.com/dvsa/olcs-utils/issues/25)) ([402967b](https://github.com/dvsa/olcs-utils/commit/402967b0b44053e15f098fee60d1715fd5982c65))
+
 ## [6.3.0](https://github.com/dvsa/olcs-utils/compare/v6.2.0...v6.3.0) (2025-06-18)
 
 
