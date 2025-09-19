@@ -17,6 +17,7 @@ class AssetPathFactory implements FactoryInterface
      * @param array|null $options
      * @return AssetPath
      */
+    #[\Override]
     public function __invoke(ContainerInterface $container, $requestedName, array $options = null): AssetPath
     {
         $config = $container->get('Config');

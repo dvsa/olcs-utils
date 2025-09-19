@@ -43,6 +43,7 @@ class TranslatorDelegator extends Translator
      *
      * @return mixed
      */
+    #[\Override]
     public function __call($method, array $args)
     {
         return call_user_func_array([$this->translator, $method], $args);
@@ -57,6 +58,7 @@ class TranslatorDelegator extends Translator
      *
      * @return string
      */
+    #[\Override]
     public function translate($message, $textDomain = 'default', $locale = null)
     {
         if (empty($message)) {

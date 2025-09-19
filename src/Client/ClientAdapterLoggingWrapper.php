@@ -96,6 +96,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return HttpAdapter
      */
+    #[\Override]
     public function setOptions($options = [])
     {
         return $this->getAdapter()->setOptions($options);
@@ -110,6 +111,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return void
      */
+    #[\Override]
     public function connect($host, $port = 80, $secure = false)
     {
         $this->host = $host;
@@ -130,6 +132,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return string
      */
+    #[\Override]
     public function write($method, $url, $httpVer = '1.1', $headers = [], $body = '')
     {
         $data = [
@@ -149,6 +152,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return string
      */
+    #[\Override]
     public function read()
     {
         $response = $this->getAdapter()->read();
@@ -171,6 +175,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return void
      */
+    #[\Override]
     public function close()
     {
         Logger::debug('Close Connection:' . $this->host . ':' . $this->port);
@@ -186,6 +191,7 @@ class ClientAdapterLoggingWrapper implements HttpAdapter, StreamInterface
      *
      * @return $this
      */
+    #[\Override]
     public function setOutputStream($stream)
     {
         $this->adapter->setOutputStream($stream);

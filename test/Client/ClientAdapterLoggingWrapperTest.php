@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dvsa\OlcsTest\Utils\Client;
 
 use Dvsa\Olcs\Utils\Client\ClientAdapterLoggingWrapper;
@@ -12,15 +14,9 @@ use PHPUnit\Framework\TestCase;
 
 class ClientAdapterLoggingWrapperTest extends TestCase
 {
-    /**
-     * @var ClientAdapterLoggingWrapper|MockObject
-     */
-    private $sut;
+    private ClientAdapterLoggingWrapper $sut;
 
-    /**
-     * @var Client\Adapter\Curl|MockObject
-     */
-    private $mockAdapter;
+    private MockObject $mockAdapter;
 
     public function setUp(): void
     {

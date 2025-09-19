@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dvsa\OlcsTest\Utils\Translation;
 
 use Dvsa\Olcs\Utils\Translation\MissingTranslationProcessor;
 use Dvsa\Olcs\Utils\View\Helper\GetPlaceholder;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManagerInterface;
-use Laminas\I18n\Translator\Translator;
 use Laminas\I18n\Translator\TranslatorInterface;
 use Laminas\ServiceManager\ServiceManager;
 use Laminas\View\Renderer\RendererInterface;
@@ -48,7 +49,6 @@ class MissingTranslationProcessorTest extends TestCase
 
     public function testAttach()
     {
-        /** @var EventManagerInterface|MockObject $events */
         $events = $this->createMock(EventManagerInterface::class);
         $events
             ->expects($this->once())
